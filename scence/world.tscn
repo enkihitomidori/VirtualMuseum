@@ -1,14 +1,31 @@
-[gd_scene load_steps=16 format=3 uid="uid://mxrnxkw3d67l"]
+[gd_scene load_steps=21 format=3 uid="uid://mxrnxkw3d67l"]
 
 [ext_resource type="Script" uid="uid://b7s1cvb33ytql" path="res://scripts/player.gd" id="1_3f0ma"]
 [ext_resource type="Texture2D" uid="uid://ci2jec4miq1n3" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_loqtw"]
 [ext_resource type="Texture2D" uid="uid://br3d3ghmmwhpv" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_3f0ma"]
 [ext_resource type="Script" uid="uid://dr41gukn02fs5" path="res://scence/camera_3d.gd" id="2_6psia"]
 [ext_resource type="Texture2D" uid="uid://b0fx6fupesq2t" path="res://assets/textures/dev/grids/Green/texture_01.png" id="3_6psia"]
+[ext_resource type="Script" uid="uid://diwkb6rx865jq" path="res://scripts/gun.gd" id="3_lhauw"]
 [ext_resource type="PackedScene" uid="uid://d114ivuhyldp7" path="res://Temple_Sketch_0506094146_generate.glb" id="7_lhauw"]
 [ext_resource type="PackedScene" uid="uid://bjeb4e71hxuwd" path="res://scence/Door.tscn" id="7_u4yjv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j6sff"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ii6s1"]
+albedo_color = Color(0.25, 0.25, 0.25, 1)
+metallic = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_u4yjv"]
+material = SubResource("StandardMaterial3D_ii6s1")
+size = Vector3(0.1, 0.39, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q0xho"]
+albedo_color = Color(0.25098, 0.25098, 0.25098, 1)
+metallic = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_lhauw"]
+material = SubResource("StandardMaterial3D_q0xho")
+size = Vector3(0.1, 0.1, 0.33)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8hlg"]
 albedo_texture = ExtResource("3_6psia")
@@ -58,6 +75,21 @@ script = ExtResource("2_6psia")
 [node name="RayCastHead" type="RayCast3D" parent="player/head/Camera3D"]
 target_position = Vector3(0, 0, -3)
 collide_with_areas = true
+
+[node name="Gun" type="Node3D" parent="player/head/Camera3D"]
+script = ExtResource("3_lhauw")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="player/head/Camera3D/Gun"]
+transform = Transform3D(1, 0, 0, 0, 0.985765, 0.168128, 0, -0.168128, 0.985765, 0.34, -0.295001, -0.396202)
+mesh = SubResource("BoxMesh_u4yjv")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="player/head/Camera3D/Gun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, -0.151554, -0.557187)
+mesh = SubResource("BoxMesh_lhauw")
+
+[node name="impactRay" type="RayCast3D" parent="player/head/Camera3D/Gun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336443, -0.108729, -0.692373)
+target_position = Vector3(0, 0, -50)
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="player"]
 

@@ -4,6 +4,7 @@ extends CharacterBody3D
 #@onready var camera_3d: Camera3D = $head/Camera3D
 @onready var raycastHead: RayCast3D = $head/Camera3D/RayCastHead
 @onready var raycastFeet: RayCast3D = $RayCastFeet
+@onready var gun: Node3D = $head/Camera3D/Gun
 
 var currentSpeed = 5.0
 var lookRotation = Vector2()
@@ -21,8 +22,13 @@ var footstep_sounds = {
 	#"wood": preload("res://sounds/footstep_wood1.ogg"),
 	"default": preload("res://sounds/footstep_default.ogg")
 }
+
+# Timers
 var footstepTimer = 0.0
 var footstepInterval = 0.4
+var gunTimer = 0.0
+var shootInterval = 0.2
+
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -58,6 +64,12 @@ func _input(event):
 			captureMouse = true
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			cameraRotation = true
+		
+	gunTimer -= get_process_delta_time() # this is delta
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if gunTimer <= 0.0:
+			gun.shoot()
+			gunTimer = shootInterval
 
 
 func _physics_process(delta: float) -> void:
@@ -110,15 +122,14 @@ func _physics_process(delta: float) -> void:
 func play_footstep():
 	if raycastFeet and not raycastFeet.is_colliding():
 		return
-
-	
+		
 	var collider = raycastFeet.get_collider()
 	var surface_type = "default"
 
 	if collider.has_meta("surfaceType"):
 		surface_type = collider.get_meta("surfaceType")
 		
-	print("Playing footstep sound: ", surface_type)
+	#print("Playing footstep sound: ", surface_type)
 
 	var stream = footstep_sounds.get(surface_type, footstep_sounds["default"])
 
