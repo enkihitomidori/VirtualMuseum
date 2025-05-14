@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdpmd8n1tb7nt"]
+
+[ext_resource type="PackedScene" uid="uid://bdiotjuyultgn" path="res://assets/3DModels/greekTemple.glb" id="1_eurqx"]
+[ext_resource type="Material" uid="uid://crek4amp28ghp" path="res://assets/textures/templeFloor.tres" id="2_2h28c"]
+[ext_resource type="Material" uid="uid://b2rbixy7q5m7g" path="res://assets/textures/templePillar.tres" id="3_qtjpf"]
+[ext_resource type="Material" uid="uid://clxkrmdyu0jph" path="res://assets/textures/templeWall.tres" id="4_74wye"]
+
+[node name="greekTemple" instance=ExtResource("1_eurqx")]
+
+[node name="floorEx" parent="." index="0"]
+material_override = ExtResource("2_2h28c")
+
+[node name="floorEx1" parent="." index="1"]
+material_override = ExtResource("2_2h28c")
+
+[node name="floorEx2" parent="." index="2"]
+material_override = ExtResource("2_2h28c")
+
+[node name="pillar_002" parent="." index="3"]
+material_override = ExtResource("3_qtjpf")
+
+[node name="pillar_003" parent="." index="4"]
+material_override = ExtResource("3_qtjpf")
+
+[node name="roof_001" parent="." index="5"]
+material_override = ExtResource("4_74wye")
+
+[node name="architrave_001" parent="." index="6"]
+material_override = ExtResource("2_2h28c")
+
+[node name="architrave2_001" parent="." index="7"]
+material_override = ExtResource("2_2h28c")
+
+[node name="architraveLong2_001" parent="." index="8"]
+material_override = ExtResource("2_2h28c")
+
+[node name="architraveLong_001" parent="." index="9"]
+material_override = ExtResource("2_2h28c")
+
+[node name="wallfront" parent="." index="10"]
+material_override = ExtResource("4_74wye")
+
+[node name="cornerTrim_001" parent="." index="12"]
+material_override = ExtResource("3_qtjpf")
+
+[node name="wallTrim_001" parent="." index="13"]
+material_override = ExtResource("3_qtjpf")
+
+[node name="wallTrim2_001" parent="." index="14"]
+material_override = ExtResource("3_qtjpf")
+
+[node name="wallBlock" parent="." index="15"]
+material_override = ExtResource("4_74wye")
