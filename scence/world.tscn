@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://mxrnxkw3d67l"]
+[gd_scene load_steps=20 format=3 uid="uid://mxrnxkw3d67l"]
 
 [ext_resource type="Script" uid="uid://b7s1cvb33ytql" path="res://scripts/player.gd" id="1_3f0ma"]
 [ext_resource type="Texture2D" uid="uid://ci2jec4miq1n3" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_loqtw"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://dr41gukn02fs5" path="res://scence/camera_3d.gd" id="2_6psia"]
 [ext_resource type="Texture2D" uid="uid://b0fx6fupesq2t" path="res://assets/textures/dev/grids/Green/texture_01.png" id="3_6psia"]
 [ext_resource type="Script" uid="uid://diwkb6rx865jq" path="res://scripts/gun.gd" id="3_lhauw"]
-[ext_resource type="PackedScene" uid="uid://d114ivuhyldp7" path="res://Temple_Sketch_0506094146_generate.glb" id="7_lhauw"]
 [ext_resource type="PackedScene" uid="uid://bjeb4e71hxuwd" path="res://scence/Door.tscn" id="7_u4yjv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j6sff"]
@@ -88,7 +87,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, -0.151554, -0.557187)
 mesh = SubResource("BoxMesh_lhauw")
 
 [node name="impactRay" type="RayCast3D" parent="player/head/Camera3D/Gun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.336443, -0.108729, -0.692373)
 target_position = Vector3(0, 0, -50)
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="player"]
@@ -102,7 +100,7 @@ physics_interpolation_mode = 1
 [node name="misc" type="Node3D" parent="stage"]
 
 [node name="olTestBox" type="CSGBox3D" parent="stage/misc"]
-transform = Transform3D(0.999632, -0.0271191, 0, 0.0271191, 0.999632, 0, 0, 0, 1, 1.034, 2.56511, -3.14837)
+transform = Transform3D(0.999632, -0.0271191, 0, 0.0271191, 0.999632, 0, 0, 0, 1, 1.034, 2.56511, -7.27218)
 material_override = SubResource("StandardMaterial3D_c8hlg")
 use_collision = true
 size = Vector3(4, 5, 2)
@@ -153,6 +151,3 @@ transform = Transform3D(1.17072, 0, 0, 0, 2.45759, 0, 0, 0, 1, 0.186242, 1.03183
 
 [node name="Door3" parent="." instance=ExtResource("7_u4yjv")]
 transform = Transform3D(1.17072, 0, 0, 0, 2.45759, 0, 0, 0, 1, 1.34529, 1.03183, 7.22895)
-
-[node name="Temple_Sketch_0506094146_generate" parent="." instance=ExtResource("7_lhauw")]
-transform = Transform3D(9.97386, 0, 0, 0, 9.97386, 0, 0, 0, 9.97386, 1.10974, 3.4157, 13.2221)

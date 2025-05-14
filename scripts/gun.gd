@@ -1,6 +1,6 @@
 extends Node3D
 
-const maxDecals : int = 10
+const maxDecals : int = 100
 var decalCount : int = 0
 @onready var impactRay: RayCast3D = $impactRay
 
@@ -22,6 +22,8 @@ func shoot():
 		spawnDecal(collision, collision.normalized())
 	
 func spawnDecal(pos: Vector3, normal: Vector3):
+	# TODO: fix: spawned decal gets squished on vertical surfaces
+	
 	var decal = Decal.new()
 	var texture = preload("res://assets/textures/splat.png") as Texture2D
 	decal.texture_albedo = texture

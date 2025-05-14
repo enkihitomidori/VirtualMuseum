@@ -15,19 +15,24 @@ const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENS = 0.003
 
-var footstep_sounds = {
+# Adding new footstep sounds:
+#	- add new metadata to a surface:
+#	- name: "surfaceType" value: string
+#	- values are taken from below
+#	- add the sound effect to res/sounds
+var footstepSounds = {
 	"grass": preload("res://sounds/footstep_grass.ogg"),
 	"dirt": preload("res://sounds/footstep_dirt.ogg"),
 	"stone": preload("res://sounds/footstep_stone.ogg"),
-	#"wood": preload("res://sounds/footstep_wood1.ogg"),
 	"default": preload("res://sounds/footstep_default.ogg")
+	#"wood": preload("res://sounds/footstep_wood1.ogg"),
 }
 
 # Timers
 var footstepTimer = 0.0
 var footstepInterval = 0.4
 var gunTimer = 0.0
-var shootInterval = 0.2
+var shootInterval = 0.1
 
 
 func _ready() -> void:
@@ -65,6 +70,7 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			cameraRotation = true
 		
+	# ::shoot
 	gunTimer -= get_process_delta_time() # this is delta
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		if gunTimer <= 0.0:
@@ -76,14 +82,12 @@ func _physics_process(delta: float) -> void:
 	
 	# raycast head
 	if Input.is_action_just_pressed("interact"):
-		#print("interact")
 		if raycastHead.is_colliding():
-			#print("raycast hit")
 			var hit = raycastHead.get_collider()
 			var door = hit.get_parent()
 			if door and door.has_method("toggle_door"):
-				#print("raycast hit door")
 				door.toggle_door()
+				# play soundeffect for door
 	
 	if Input.is_action_pressed("sprint"):
 		currentSpeed = SPRINT_SPEED
@@ -120,6 +124,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func play_footstep():
+	# TODO: fix: footsteps wont play sometimes. Might need to jump
+	# to get them working
+	
 	if raycastFeet and not raycastFeet.is_colliding():
 		return
 		
@@ -131,7 +138,7 @@ func play_footstep():
 		
 	#print("Playing footstep sound: ", surface_type)
 
-	var stream = footstep_sounds.get(surface_type, footstep_sounds["default"])
+	var stream = footstepSounds.get(surface_type, footstepSounds["default"])
 
 	if stream is Array:
 		stream = stream[randi() % stream.size()]
