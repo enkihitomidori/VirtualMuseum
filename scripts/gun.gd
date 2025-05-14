@@ -4,9 +4,11 @@ const maxDecals : int = 100
 var decalCount : int = 0
 @onready var impactRay: RayCast3D = $impactRay
 
+var gunshot = preload("res://sounds/gunshot.ogg")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$gunPlayer.stream = gunshot
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,6 +21,7 @@ func shoot():
 	if impactRay.is_colliding() and decalCount < maxDecals:
 		decalCount += 1
 		var collision = impactRay.get_collision_point()
+		$gunPlayer.play()
 		spawnDecal(collision, collision.normalized())
 	
 func spawnDecal(pos: Vector3, normal: Vector3):
