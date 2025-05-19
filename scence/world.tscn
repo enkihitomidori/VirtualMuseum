@@ -102,10 +102,10 @@ physics_interpolation_mode = 1
 [node name="misc" type="Node3D" parent="stage"]
 
 [node name="olTestBox" type="CSGBox3D" parent="stage/misc"]
-transform = Transform3D(0.999632, -0.0271191, 0, 0.0271191, 0.999632, 0, 0, 0, 1, 1.034, 2.56511, -7.27218)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04563, 2.94199, -7.27218)
 material_override = SubResource("StandardMaterial3D_c8hlg")
 use_collision = true
-size = Vector3(4, 5, 2)
+size = Vector3(4, 5.915, 2)
 
 [node name="floorbox" type="CSGBox3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.236525, -0.552933, -0.249606)
