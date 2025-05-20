@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
 @onready var head: Node3D = $head
-#@onready var camera_3d: Camera3D = $head/Camera3D
+@onready var camera_3d: Camera3D = $head/Camera3D
 @onready var raycastHead: RayCast3D = $head/Camera3D/RayCastHead
 @onready var raycastFeet: RayCast3D = $RayCastFeet
 @onready var gun: Node3D = $head/Camera3D/Gun
+@onready var cameraGUI = $"../stage/misc/Cameraframe"
 
 var currentSpeed = 5.0
 var lookRotation = Vector2()
@@ -14,6 +15,8 @@ const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
 const MOUSE_SENS = 0.003
+const CAMERA_NORMAL = 70
+const CAMERA_ZOOM = 20
 
 # Adding new footstep sounds:
 #	- add new metadata to a surface:
@@ -37,6 +40,14 @@ var shootInterval = 0.1
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	# Set camera FOV to harmonize with the constants, sanity check the GUI
+	
+	cameraGUI.visible = false 
+
+	camera_3d.fov = CAMERA_NORMAL
+
+
 
 #func _input(event):
 #	if event is InputEventMouseMotion:
@@ -109,6 +120,17 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		
+	# Handle camera GUI (#todo Sprite dimensions).
+	if Input.is_action_just_pressed("interact"):
+		if cameraGUI.visible:
+			camera_3d.fov = CAMERA_NORMAL
+			cameraGUI.visible = false 
+			
+		else:
+			camera_3d.fov = CAMERA_ZOOM
+			cameraGUI.visible = true
+
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
