@@ -1,5 +1,12 @@
 extends CharacterBody3D
 
+
+#
+# Character Interactivity controller for player input
+#
+#
+
+
 @onready var head: Node3D = $head
 @onready var camera_3d: Camera3D = $head/Camera3D
 @onready var raycastHead: RayCast3D = $head/Camera3D/RayCastHead
@@ -122,7 +129,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		
 	# Handle camera GUI (#todo Sprite dimensions).
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("photomode"):
 		if cameraGUI.visible:
 			camera_3d.fov = CAMERA_NORMAL
 			cameraGUI.visible = false 
