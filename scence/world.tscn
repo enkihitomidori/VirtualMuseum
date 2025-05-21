@@ -1,12 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://mxrnxkw3d67l"]
+[gd_scene load_steps=24 format=3 uid="uid://mxrnxkw3d67l"]
 
 [ext_resource type="Script" uid="uid://b7s1cvb33ytql" path="res://scripts/player.gd" id="1_3f0ma"]
-[ext_resource type="Texture2D" uid="uid://ci2jec4miq1n3" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_loqtw"]
 [ext_resource type="Texture2D" uid="uid://br3d3ghmmwhpv" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_3f0ma"]
 [ext_resource type="Script" uid="uid://dr41gukn02fs5" path="res://scence/camera_3d.gd" id="2_6psia"]
-[ext_resource type="Texture2D" uid="uid://b0fx6fupesq2t" path="res://assets/textures/dev/grids/Green/texture_01.png" id="3_6psia"]
 [ext_resource type="Script" uid="uid://diwkb6rx865jq" path="res://scripts/gun.gd" id="3_lhauw"]
+[ext_resource type="Texture2D" uid="uid://dlyx1hndocury" path="res://assets/textures/dev/grids/Dark/texture_02.png" id="4_lhauw"]
+[ext_resource type="Shader" uid="uid://c8p8i8i67wlc5" path="res://scence/world.gdshader" id="4_q0xho"]
+[ext_resource type="Texture2D" uid="uid://cvi5t5xhed733" path="res://assets/textures/cameraframe.svg" id="5_ii6s1"]
+[ext_resource type="Texture2D" uid="uid://cyw35lu830o74" path="res://assets/textures/dev/grids/Green/texture_09.png" id="5_u4yjv"]
 [ext_resource type="PackedScene" uid="uid://bjeb4e71hxuwd" path="res://scence/Door.tscn" id="7_u4yjv"]
+[ext_resource type="PackedScene" uid="uid://bdpmd8n1tb7nt" path="res://scence/greekTemple.tscn" id="8_lhauw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j6sff"]
 
@@ -26,13 +29,18 @@ metallic = 1.0
 material = SubResource("StandardMaterial3D_q0xho")
 size = Vector3(0.1, 0.1, 0.33)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8hlg"]
-albedo_texture = ExtResource("3_6psia")
-metallic = 0.24
-uv1_triplanar = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0xho"]
+render_priority = 0
+shader = ExtResource("4_q0xho")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqk2v"]
-albedo_texture = ExtResource("1_loqtw")
+albedo_color = Color(0.0901961, 0.435294, 0, 1)
+albedo_texture = ExtResource("5_u4yjv")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8hlg"]
+albedo_texture = ExtResource("4_lhauw")
+metallic = 0.24
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4yjv"]
@@ -102,17 +110,29 @@ physics_interpolation_mode = 1
 [node name="misc" type="Node3D" parent="stage"]
 
 [node name="olTestBox" type="CSGBox3D" parent="stage/misc"]
-transform = Transform3D(0.999632, -0.0271191, 0, 0.0271191, 0.999632, 0, 0, 0, 1, 1.034, 2.56511, -7.27218)
-material_override = SubResource("StandardMaterial3D_c8hlg")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.99971, 1.0891, -1.94855)
+material_override = SubResource("ShaderMaterial_q0xho")
+operation = 2
 use_collision = true
-size = Vector3(4, 5, 2)
+size = Vector3(4, 5.915, 2)
+
+[node name="Cameraframe" type="Sprite2D" parent="stage/misc"]
+position = Vector2(987, 625)
+scale = Vector2(0.749479, 0.756481)
+texture = ExtResource("5_ii6s1")
 
 [node name="floorbox" type="CSGBox3D" parent="stage"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.236525, -0.552933, -0.249606)
 use_collision = true
-size = Vector3(40, 1, 40)
+size = Vector3(120, 1, 180)
 material = SubResource("StandardMaterial3D_aqk2v")
 metadata/surfaceType = "default"
+
+[node name="olTestBox2" type="CSGBox3D" parent="stage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.21674, -0.187165, 11.087)
+material_override = SubResource("StandardMaterial3D_c8hlg")
+use_collision = true
+size = Vector3(32.8882, 0.390864, 3.70264)
 
 [node name="debugLabel" type="RichTextLabel" parent="stage"]
 modulate = Color(0.209046, 0.648167, 0.502491, 1)
@@ -153,3 +173,6 @@ transform = Transform3D(1.17072, 0, 0, 0, 2.45759, 0, 0, 0, 1, 0.186242, 1.03183
 
 [node name="Door3" parent="." instance=ExtResource("7_u4yjv")]
 transform = Transform3D(1.17072, 0, 0, 0, 2.45759, 0, 0, 0, 1, 1.34529, 1.03183, 7.22895)
+
+[node name="greekTemple" parent="." instance=ExtResource("8_lhauw")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -35.844, 0.22, -30.2729)
