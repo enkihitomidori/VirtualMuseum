@@ -1,0 +1,14 @@
+Documentation
+
+# changing scenes with doors:
+    - create a new scene
+    - add door.tscn
+    - set "target scene" variable to a scene from the editor inspector panel
+    - set a "spawnPoint" node3D (optional)
+
+# adding footstep sounds:
+    - in "player.gd" add a new item to "footstepSounds" dictionary eg:   "name": preload("res://sounds/name.ogg")
+    - add the audio file to res://sounds
+    - add new metadata to a surface:
+        - name: "surfaceType" value: string
+    - valuestring same as the name of the audio eg: "name"

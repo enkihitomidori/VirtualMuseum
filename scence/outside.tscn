@@ -88,4 +88,4 @@ transform = Transform3D(1.17072, 0, 0, 0, 1.26772, 0, 0, 0, 1, 0.186242, 1.25088
 targetScenePath = "uid://jwj1xqd623h6"
 
 [node name="spawnPoint" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.20178, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68236, 0)

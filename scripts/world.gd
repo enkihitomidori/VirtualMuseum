@@ -27,7 +27,7 @@ func loadLevel(packedScene: PackedScene):
 	var levelInstance = packedScene.instantiate()
 	stage.add_child(levelInstance)
 	
-	# find spawnPoint node3d
+	# find spawnPoint (node3D)
 	var spawnPointNode = levelInstance.get_node_or_null("spawnPoint")
 	var spawnPointPos = Vector3.ZERO
 	
