@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk0d1lcpijssq"]
+
+[ext_resource type="PackedScene" uid="uid://dcurxvtseeg26" path="res://assets/3DModels/flowerBush.glb" id="1_khvn3"]
+[ext_resource type="Material" uid="uid://35d8ok26fe2k" path="res://assets/textures/flowerBush.tres" id="2_u7hxq"]
+[ext_resource type="Material" uid="uid://vrx2rb6xji13" path="res://assets/textures/flower2.tres" id="3_eltyn"]
+[ext_resource type="Material" uid="uid://fpta83xpp4t6" path="res://assets/textures/flower.tres" id="4_i4qfv"]
+
+[node name="flowerBush" instance=ExtResource("1_khvn3")]
+
+[node name="flowerBush" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_u7hxq")
+surface_material_override/1 = ExtResource("3_eltyn")
+surface_material_override/2 = ExtResource("4_i4qfv")

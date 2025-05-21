@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdc7bbvhml5sw"]
+
+[ext_resource type="PackedScene" uid="uid://djgtpgdaxtbt6" path="res://assets/3DModels/firBig.glb" id="1_wcffq"]
+[ext_resource type="Material" uid="uid://c02xwog2bsggi" path="res://assets/textures/firTrunk.tres" id="2_vewac"]
+[ext_resource type="Material" uid="uid://cb2m1kbfcs5ye" path="res://assets/textures/firNeedles.tres" id="3_237fv"]
+
+[node name="firBig2" instance=ExtResource("1_wcffq")]
+
+[node name="firBig" parent="." index="0"]
+material_override = ExtResource("2_vewac")
+
+[node name="firBigNeedles" parent="firBig" index="0"]
+material_override = ExtResource("3_237fv")
+
+[node name="firBigNeedles2" parent="firBig" index="1"]
+material_override = ExtResource("3_237fv")
+
+[node name="firBigNeedles3" parent="firBig" index="2"]
+material_override = ExtResource("3_237fv")
+
+[node name="firBigNeedles4" parent="firBig" index="3"]
+material_override = ExtResource("3_237fv")
+
+[node name="firBigNeedles5" parent="firBig" index="4"]
+material_override = ExtResource("3_237fv")
+
+[node name="firBigNeedles6" parent="firBig" index="5"]
+material_override = ExtResource("3_237fv")
+
+[node name="firBigNeedles7" parent="firBig" index="6"]
+material_override = ExtResource("3_237fv")
+
+[node name="CollisionShape3D" parent="firBig/firBigNeedlesCol" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135509, 0)

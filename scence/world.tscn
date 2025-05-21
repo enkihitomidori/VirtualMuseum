@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://mxrnxkw3d67l"]
+[gd_scene load_steps=30 format=3 uid="uid://mxrnxkw3d67l"]
 
 [ext_resource type="Script" uid="uid://b7s1cvb33ytql" path="res://scripts/player.gd" id="1_3f0ma"]
 [ext_resource type="Texture2D" uid="uid://br3d3ghmmwhpv" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_3f0ma"]
@@ -10,6 +10,12 @@
 [ext_resource type="Texture2D" uid="uid://cyw35lu830o74" path="res://assets/textures/dev/grids/Green/texture_09.png" id="5_u4yjv"]
 [ext_resource type="PackedScene" uid="uid://bjeb4e71hxuwd" path="res://scence/Door.tscn" id="7_u4yjv"]
 [ext_resource type="PackedScene" uid="uid://bdpmd8n1tb7nt" path="res://scence/greekTemple.tscn" id="8_lhauw"]
+[ext_resource type="PackedScene" uid="uid://d15tenr75pj4" path="res://scence/fir.tscn" id="11_00jdh"]
+[ext_resource type="PackedScene" uid="uid://b26rl2ncmdon3" path="res://scence/tree1.tscn" id="12_1e6yi"]
+[ext_resource type="PackedScene" uid="uid://cdc7bbvhml5sw" path="res://scence/firBig.tscn" id="13_dtrtd"]
+[ext_resource type="PackedScene" uid="uid://dhtg5qfr3oar6" path="res://scence/tree2.tscn" id="14_4gr7i"]
+[ext_resource type="PackedScene" uid="uid://m221jtqn71as" path="res://scence/longTree.tscn" id="15_14qux"]
+[ext_resource type="PackedScene" uid="uid://bk0d1lcpijssq" path="res://scence/flowerBush.tscn" id="16_66wbp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j6sff"]
 
@@ -175,4 +181,22 @@ transform = Transform3D(1.17072, 0, 0, 0, 2.45759, 0, 0, 0, 1, 0.186242, 1.03183
 transform = Transform3D(1.17072, 0, 0, 0, 2.45759, 0, 0, 0, 1, 1.34529, 1.03183, 7.22895)
 
 [node name="greekTemple" parent="." instance=ExtResource("8_lhauw")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -35.844, 0.22, -30.2729)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.15, -51.587)
+
+[node name="fir" parent="." instance=ExtResource("11_00jdh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -1)
+
+[node name="tree1" parent="." instance=ExtResource("12_1e6yi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.01588, -0.0501558, -2.08961)
+
+[node name="firBig" parent="." instance=ExtResource("13_dtrtd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 6)
+
+[node name="tree2" parent="." instance=ExtResource("14_4gr7i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.16512, -0.0297109, 3.49177)
+
+[node name="longTree2" parent="." instance=ExtResource("15_14qux")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.03444, -0.0493698, 5.18187)
+
+[node name="flowerBush" parent="." instance=ExtResource("16_66wbp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1)

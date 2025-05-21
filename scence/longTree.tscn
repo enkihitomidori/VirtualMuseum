@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://m221jtqn71as"]
+
+[ext_resource type="PackedScene" uid="uid://d0byqeg6j25t3" path="res://assets/3DModels/longTree.glb" id="1_d7ueu"]
+[ext_resource type="Material" uid="uid://c2o7evabwica0" path="res://assets/textures/treeTrunk.tres" id="2_q5var"]
+[ext_resource type="Material" uid="uid://cb2m1kbfcs5ye" path="res://assets/textures/firNeedles.tres" id="3_wfbje"]
+
+[node name="longTree2" instance=ExtResource("1_d7ueu")]
+
+[node name="longTree" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_q5var")
+
+[node name="longTreeLeaves" parent="longTree" index="0"]
+surface_material_override/0 = ExtResource("3_wfbje")

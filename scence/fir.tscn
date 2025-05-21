@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d15tenr75pj4"]
+
+[ext_resource type="PackedScene" uid="uid://du8fdd0wt43oq" path="res://assets/3DModels/fir.glb" id="1_seynt"]
+[ext_resource type="Material" uid="uid://c02xwog2bsggi" path="res://assets/textures/firTrunk.tres" id="2_q4rg2"]
+[ext_resource type="Material" uid="uid://cb2m1kbfcs5ye" path="res://assets/textures/firNeedles.tres" id="3_s0535"]
+
+[node name="fir2" instance=ExtResource("1_seynt")]
+
+[node name="fir" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_q4rg2")
+
+[node name="firNeedles" parent="fir" index="0"]
+surface_material_override/0 = ExtResource("3_s0535")
+
+[node name="firNeedles2" parent="fir" index="1"]
+surface_material_override/0 = ExtResource("3_s0535")
+
+[node name="firNeedles3" parent="fir" index="2"]
+surface_material_override/0 = ExtResource("3_s0535")
+
+[node name="firNeedles4" parent="fir" index="3"]
+surface_material_override/0 = ExtResource("3_s0535")

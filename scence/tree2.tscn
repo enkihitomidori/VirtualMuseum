@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhtg5qfr3oar6"]
+
+[ext_resource type="PackedScene" uid="uid://cfe6gxr6vh3ov" path="res://assets/3DModels/tree2.glb" id="1_fj8s1"]
+[ext_resource type="Material" uid="uid://c2o7evabwica0" path="res://assets/textures/treeTrunk.tres" id="2_qr1qy"]
+[ext_resource type="Material" uid="uid://cq14rw1vsvmgj" path="res://assets/textures/lightLeaves.tres" id="3_h64sl"]
+
+[node name="tree22" instance=ExtResource("1_fj8s1")]
+
+[node name="tree2" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_qr1qy")
+
+[node name="tree2Leaves" parent="tree2" index="4"]
+surface_material_override/0 = ExtResource("3_h64sl")
