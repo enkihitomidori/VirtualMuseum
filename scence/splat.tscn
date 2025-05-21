@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://nxq4w6px27ss"]
+
+[ext_resource type="Texture2D" uid="uid://bnfobik2h433e" path="res://assets/textures/splat.png" id="1_uxcvy"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.160119, 0, 0, 0, 0.160119, 0, 0, 0, 0.160119, 0, 0, -0.01)
+texture = ExtResource("1_uxcvy")

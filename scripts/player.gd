@@ -12,7 +12,7 @@ extends CharacterBody3D
 @onready var raycastHead: RayCast3D = $head/Camera3D/RayCastHead
 @onready var raycastFeet: RayCast3D = $RayCastFeet
 @onready var gun: Node3D = $head/Camera3D/Gun
-@onready var cameraGUI = $"../stage/misc/Cameraframe"
+#@onready var cameraGUI = $"../stage/misc/Cameraframe"
 
 var currentSpeed = 5.0
 var lookRotation = Vector2()
@@ -50,7 +50,7 @@ func _ready() -> void:
 	
 	# Set camera FOV to harmonize with the constants, sanity check the GUI
 	
-	cameraGUI.visible = false 
+	#cameraGUI.visible = false 
 
 	camera_3d.fov = CAMERA_NORMAL
 
@@ -114,6 +114,7 @@ func _physics_process(delta: float) -> void:
 		
 	var isMoving = velocity.length() > 0.1
 	
+	# footstep timer
 	if isMoving and is_on_floor():
 		footstepTimer -= delta * (currentSpeed * 0.2)
 		if footstepTimer <= 0.0:
@@ -129,14 +130,14 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		
 	# Handle camera GUI (#todo Sprite dimensions).
-	if Input.is_action_just_pressed("photomode"):
-		if cameraGUI.visible:
-			camera_3d.fov = CAMERA_NORMAL
-			cameraGUI.visible = false 
-			
-		else:
-			camera_3d.fov = CAMERA_ZOOM
-			cameraGUI.visible = true
+	#if Input.is_action_just_pressed("photomode"):
+		#if cameraGUI.visible:
+			#camera_3d.fov = CAMERA_NORMAL
+			#cameraGUI.visible = false 
+			#
+		#else:
+			#camera_3d.fov = CAMERA_ZOOM
+			#cameraGUI.visible = true
 
 
 	# Get the input direction and handle the movement/deceleration.
@@ -167,10 +168,11 @@ func play_footstep():
 		
 	#print("Playing footstep sound: ", surface_type)
 
+	# get the correct footstep sound based on the surfaceType
 	var stream = footstepSounds.get(surface_type, footstepSounds["default"])
-
 	if stream is Array:
 		stream = stream[randi() % stream.size()]
 
+	# set and play sound
 	$FootstepPlayer.stream = stream
 	$FootstepPlayer.play()

@@ -3,6 +3,7 @@ extends Node3D
 const maxDecals : int = 100
 var decalCount : int = 0
 @onready var impactRay: RayCast3D = $impactRay
+@onready var b_decal = preload("res://scence/splat.tscn")
 
 var gunshot = preload("res://sounds/gunshot.ogg")
 
@@ -22,7 +23,8 @@ func shoot():
 		decalCount += 1
 		var collision = impactRay.get_collision_point()
 		$gunPlayer.play()
-		spawnDecal(collision, collision.normalized())
+		#spawnDecal(collision, collision.normalized())
+		spawnDecal2(impactRay)
 	
 func spawnDecal(pos: Vector3, normal: Vector3):
 	# TODO: fix: spawned decal gets squished on vertical surfaces
@@ -40,3 +42,10 @@ func spawnDecal(pos: Vector3, normal: Vector3):
 	decal.look_at(position + normal)
 	
 	get_tree().current_scene.add_child(decal)
+	
+func spawnDecal2(raycast: RayCast3D):
+	var b = b_decal.instantiate()
+	raycast.get_collider().add_child(b)
+	b.global_transform.origin = raycast.get_collision_point()
+	b.look_at(raycast.get_collision_point() + raycast.get_collision_normal(), Vector3.UP)
+	

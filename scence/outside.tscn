@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://cm43gro6ra13j"]
+
+[ext_resource type="Shader" path="res://scence/world.gdshader" id="1_thelq"]
+[ext_resource type="Texture2D" uid="uid://cvi5t5xhed733" path="res://assets/textures/cameraframe.svg" id="2_rdoft"]
+[ext_resource type="Texture2D" uid="uid://cyw35lu830o74" path="res://assets/textures/dev/grids/Green/texture_09.png" id="3_7giy0"]
+[ext_resource type="Texture2D" uid="uid://dlyx1hndocury" path="res://assets/textures/dev/grids/Dark/texture_02.png" id="4_shjb2"]
+[ext_resource type="PackedScene" path="res://scence/greekTemple.tscn" id="5_spu2r"]
+[ext_resource type="PackedScene" uid="uid://bjeb4e71hxuwd" path="res://scence/Door.tscn" id="6_ws35w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0xho"]
+render_priority = 0
+shader = ExtResource("1_thelq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqk2v"]
+albedo_color = Color(0.0901961, 0.435294, 0, 1)
+albedo_texture = ExtResource("3_7giy0")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8hlg"]
+albedo_texture = ExtResource("4_shjb2")
+metallic = 0.24
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u4yjv"]
+albedo_color = Color(0.0326666, 0.49, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhauw"]
+albedo_color = Color(0.53, 0.300333, 0, 1)
+
+[node name="stage" type="Node3D"]
+physics_interpolation_mode = 1
+
+[node name="misc" type="Node3D" parent="."]
+
+[node name="olTestBox" type="CSGBox3D" parent="misc"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.99971, 1.0891, -1.94855)
+material_override = SubResource("ShaderMaterial_q0xho")
+operation = 2
+use_collision = true
+size = Vector3(4, 5.915, 2)
+
+[node name="Cameraframe" type="Sprite2D" parent="misc"]
+position = Vector2(987, 625)
+scale = Vector2(0.749479, 0.756481)
+texture = ExtResource("2_rdoft")
+
+[node name="floorbox" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.236525, -0.552933, -0.249606)
+use_collision = true
+size = Vector3(120, 1, 180)
+material = SubResource("StandardMaterial3D_aqk2v")
+metadata/surfaceType = "default"
+
+[node name="olTestBox2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.21674, -0.187165, 11.087)
+material_override = SubResource("StandardMaterial3D_c8hlg")
+use_collision = true
+size = Vector3(32.8882, 0.390864, 3.70264)
+
+[node name="debugLabel" type="RichTextLabel" parent="."]
+modulate = Color(0.209046, 0.648167, 0.502491, 1)
+clip_contents = false
+offset_right = 314.0
+offset_bottom = 28.0
+scale = Vector2(1, 0.914286)
+text = "  Virtual Musem indevmode"
+autowrap_mode = 0
+
+[node name="Grass" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4303, -0.00773048, 0.000366211)
+use_collision = true
+size = Vector3(5, 0.1, 5)
+material = SubResource("StandardMaterial3D_u4yjv")
+metadata/surfaceType = "grass"
+
+[node name="Dirt" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4201, 9.53674e-07, -4.99372)
+use_collision = true
+size = Vector3(5, 0.1, 5)
+material = SubResource("StandardMaterial3D_lhauw")
+metadata/surfaceType = "dirt"
+
+[node name="greekTemple" parent="." instance=ExtResource("5_spu2r")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -35.844, 0.22, -30.2729)
+
+[node name="Door2" parent="." instance=ExtResource("6_ws35w")]
+transform = Transform3D(1.17072, 0, 0, 0, 1.26772, 0, 0, 0, 1, 0.186242, 1.25088, -3.63314)
+targetScenePath = "uid://jwj1xqd623h6"
+
+[node name="spawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68236, 0)
