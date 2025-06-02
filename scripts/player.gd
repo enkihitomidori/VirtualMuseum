@@ -12,7 +12,7 @@ extends CharacterBody3D
 @onready var raycastHead: RayCast3D = $head/Camera3D/RayCastHead
 @onready var raycastFeet: RayCast3D = $RayCastFeet
 @onready var gun: Node3D = $head/Camera3D/Gun
-#@onready var cameraGUI = $"../stage/misc/Cameraframe"
+@onready var cameraGUI = $"../stage/misc/Cameraframe"
 
 var currentSpeed = 5.0
 var lookRotation = Vector2()
@@ -48,9 +48,9 @@ var shootInterval = 0.1
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	# Set camera FOV to harmonize with the constants, sanity check the GUI
-	
-	#cameraGUI.visible = false 
+	 #Set camera FOV to harmonize with the constants, sanity check the GUI
+	#
+	cameraGUI.visible = false 
 
 	camera_3d.fov = CAMERA_NORMAL
 
@@ -129,15 +129,16 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
-	# Handle camera GUI (#todo Sprite dimensions).
-	#if Input.is_action_just_pressed("photomode"):
-		#if cameraGUI.visible:
-			#camera_3d.fov = CAMERA_NORMAL
-			#cameraGUI.visible = false 
-			#
-		#else:
-			#camera_3d.fov = CAMERA_ZOOM
-			#cameraGUI.visible = true
+ #Handle camera GUI (#todo Sprite dimensions).
+	if Input.is_action_just_pressed("photomode"):
+		if cameraGUI.visible:
+			camera_3d.fov = CAMERA_NORMAL
+			cameraGUI.visible = false 
+			
+		else:
+			camera_3d.fov = CAMERA_ZOOM
+			cameraGUI.visible = true
+#endregion
 
 
 	# Get the input direction and handle the movement/deceleration.
