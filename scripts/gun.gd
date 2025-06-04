@@ -29,10 +29,12 @@ func shoot():
 func spawnDecal(pos: Vector3, normal: Vector3):
 	# TODO: fix: spawned decal gets squished on vertical surfaces
 	
+	
 	var decal = Decal.new()
 	var texture = preload("res://assets/textures/splat.png") as Texture2D
 	decal.texture_albedo = texture
 	decal.size = Vector3(0.3, 0.3, 0.3)
+
 
 	# center decal (scaling not working)
 	#pos.x -= texture.get_size().x * 0.5
@@ -44,9 +46,19 @@ func spawnDecal(pos: Vector3, normal: Vector3):
 	get_tree().current_scene.add_child(decal)
 	
 func spawnDecal2(raycast: RayCast3D):
-	var b = b_decal.instantiate()
+	var splat = b_decal.instantiate()
 	if raycast:
-		raycast.get_collider().add_child(b)
-		b.global_transform.origin = raycast.get_collision_point()
-		b.look_at(raycast.get_collision_point() + raycast.get_collision_normal(), Vector3.UP)
+		raycast.get_collider().add_child(splat)
+		splat.global_transform.origin = raycast.get_collision_point()
+		splat.look_at(raycast.get_collision_point() + raycast.get_collision_normal(), Vector3.UP)
+		splat.rotate_object_local(Vector3(0, 0, 1), randf() * TAU)
+		
+		var min = 0.3
+		var max = 1.0
+		
+		# Modify material color
+		var r = randf_range(min, max)
+		var g = randf_range(min, max)
+		var b = randf_range(min, max)
+		splat.get_child(0).modulate = Color(r, g, b)
 	
