@@ -45,7 +45,8 @@ func spawnDecal(pos: Vector3, normal: Vector3):
 	
 func spawnDecal2(raycast: RayCast3D):
 	var b = b_decal.instantiate()
-	raycast.get_collider().add_child(b)
-	b.global_transform.origin = raycast.get_collision_point()
-	b.look_at(raycast.get_collision_point() + raycast.get_collision_normal(), Vector3.UP)
+	if raycast:
+		raycast.get_collider().add_child(b)
+		b.global_transform.origin = raycast.get_collision_point()
+		b.look_at(raycast.get_collision_point() + raycast.get_collision_normal(), Vector3.UP)
 	

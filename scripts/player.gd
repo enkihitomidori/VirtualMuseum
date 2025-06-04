@@ -173,7 +173,7 @@ func play_footstep():
 	var collider = raycastFeet.get_collider()
 	var surface_type = "default"
 
-	if collider.has_meta("surfaceType"):
+	if collider and collider.has_meta("surfaceType"):
 		surface_type = collider.get_meta("surfaceType")
 		
 	#print("Playing footstep sound: ", surface_type)
