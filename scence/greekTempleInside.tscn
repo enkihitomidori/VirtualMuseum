@@ -1,5 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://rfksfh242ud6"]
+[gd_scene load_steps=4 format=3 uid="uid://rfksfh242ud6"]
 
 [ext_resource type="PackedScene" uid="uid://dvpu183hl1gjr" path="res://assets/3DModels/greekTempleInside.glb" id="1_wc3es"]
+[ext_resource type="PackedScene" uid="uid://cmbm8q4vrhahu" path="res://scence/doubleDoor.tscn" id="2_cwiuu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wc3es"]
+size = Vector3(17, 0.03, 55)
 
 [node name="greekTempleInside" instance=ExtResource("1_wc3es")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_wc3es")
+
+[node name="spawnPoint" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04679, 25.5715)
+
+[node name="Node3D" parent="." index="3" instance=ExtResource("2_cwiuu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203493, 1.015, 26.9677)
+targetScenePath = "uid://cm43gro6ra13j"

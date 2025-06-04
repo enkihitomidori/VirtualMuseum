@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmbm8q4vrhahu"]
+
+[ext_resource type="Script" uid="uid://bp686ylb17eiw" path="res://scripts/double_door.gd" id="1_gag2p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iaubx"]
+size = Vector3(1, 2, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iaubx"]
+size = Vector3(1, 2, 0.05)
+
+[sub_resource type="Animation" id="Animation_gag2p"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0, -4.37114e-08)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1, 0, 4.37114e-08)
+
+[sub_resource type="Animation" id="Animation_iaubx"]
+resource_name = "door_open"
+length = 0.4
+step = 0.0
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0, -4.37114e-08, 0.4, 1, 0, 0.991445, 0, -0.130526)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("right")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1, 0, 4.37114e-08, 0.4, 1, 0, 0.991445, 0, 0.130526)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_73bkp"]
+_data = {
+&"RESET": SubResource("Animation_gag2p"),
+&"door_open": SubResource("Animation_iaubx")
+}
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_gag2p")
+
+[node name="left" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -1, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="left"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="left/StaticBody3D"]
+mesh = SubResource("BoxMesh_iaubx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="left/StaticBody3D"]
+shape = SubResource("BoxShape3D_iaubx")
+
+[node name="right" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 1, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="right"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="right/StaticBody3D"]
+mesh = SubResource("BoxMesh_iaubx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="right/StaticBody3D"]
+shape = SubResource("BoxShape3D_iaubx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_73bkp")
+}

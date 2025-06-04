@@ -12,7 +12,7 @@ extends CharacterBody3D
 @onready var raycastHead: RayCast3D = $head/Camera3D/RayCastHead
 @onready var raycastFeet: RayCast3D = $RayCastFeet
 @onready var gun: Node3D = $head/Camera3D/Gun
-@onready var cameraGUI = $"../stage/misc/Cameraframe"
+@onready var cameraGUI = $"../player/Cameraframe" # prev: $"../stage/misc/Cameraframe"
 
 var currentSpeed = 5.0
 var lookRotation = Vector2()
@@ -102,8 +102,17 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		if raycastHead.is_colliding():
 			var hit = raycastHead.get_collider()
-			var door = hit.get_parent()
-			if door and door.has_method("toggle_door"):
+			
+			# get root or parent node
+			var current = hit
+			var door = null
+			while current != null:
+				if current.has_method("toggle_door"):
+					door = current
+					break
+				current = current.get_parent()
+				
+			if door:
 				door.toggle_door()
 				# play soundeffect for door
 	
