@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba0nxk8sfhju1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0062g"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0062g"]
+
+[node name="jetpack" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_0062g")
+
+[node name="Label3D" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24682, 0)
+billboard = 1
+text = "jetpack model here"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CapsuleShape3D_0062g")

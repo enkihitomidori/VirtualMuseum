@@ -13,6 +13,7 @@ extends CharacterBody3D
 @onready var raycastFeet: RayCast3D = $RayCastFeet
 @onready var gun: Node3D = $head/Camera3D/Gun
 @onready var cameraGUI = $"../player/Cameraframe" # prev: $"../stage/misc/Cameraframe"
+@onready var jetpackInfoLabel: Label = $"../player/jetpackInfo" # this is a placeholder for jetpack firstperson model
 
 var currentSpeed = 5.0
 var lookRotation = Vector2()
@@ -24,6 +25,10 @@ const JUMP_VELOCITY = 4.5
 const MOUSE_SENS = 0.003
 const CAMERA_NORMAL = 70
 const CAMERA_ZOOM = 20
+const JETPACK_VELOCITY = 5.0
+var JETPACK_ACCELERATION = 1.3
+
+var equippedItem = null #currently equipped item eg: jetpack
 
 # Adding new footstep sounds:
 #	- add new metadata to a surface:
@@ -46,6 +51,9 @@ var shootInterval = 0.1
 
 
 func _ready() -> void:
+	
+	assert(cameraGUI, "cameraGUI null")
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	 #Set camera FOV to harmonize with the constants, sanity check the GUI
@@ -53,6 +61,7 @@ func _ready() -> void:
 	cameraGUI.visible = false 
 
 	camera_3d.fov = CAMERA_NORMAL
+	jetpackInfoLabel.visible = false
 
 
 
@@ -102,8 +111,9 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		if raycastHead.is_colliding():
 			var hit = raycastHead.get_collider()
+			var parent = hit.get_parent()
 			
-			# get root or parent node
+			# TODO: make this faster
 			var current = hit
 			var door = null
 			while current != null:
@@ -114,7 +124,17 @@ func _physics_process(delta: float) -> void:
 				
 			if door:
 				door.toggle_door()
-				# play soundeffect for door
+				# TODO: play soundeffect for door
+				
+			# ::jetpack interact
+			if parent.get_name() == "jetpack":
+				equippedItem = parent
+				#parent.queue_free()
+				jetpackInfoLabel.visible = true
+				
+	if equippedItem and equippedItem.get_name() == "jetpack" and Input.is_key_pressed(KEY_R):
+		equippedItem = null
+		jetpackInfoLabel.visible = false
 	
 	if Input.is_action_pressed("sprint"):
 		currentSpeed = SPRINT_SPEED
@@ -122,6 +142,15 @@ func _physics_process(delta: float) -> void:
 		currentSpeed = WALK_SPEED
 		
 	var isMoving = velocity.length() > 0.1
+	
+	# ::jetpack
+	if equippedItem and equippedItem.get_name() == "jetpack":
+		if Input.is_action_pressed("ui_accept"):
+			velocity.y = JETPACK_VELOCITY * JETPACK_ACCELERATION
+			JETPACK_ACCELERATION *= 1.01
+			print(JETPACK_ACCELERATION)
+		else:
+			JETPACK_ACCELERATION = 1.3
 	
 	# footstep timer
 	if isMoving and is_on_floor():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cm43gro6ra13j"]
+[gd_scene load_steps=13 format=3 uid="uid://cm43gro6ra13j"]
 
 [ext_resource type="Shader" path="res://scence/world.gdshader" id="1_thelq"]
 [ext_resource type="Texture2D" uid="uid://cvi5t5xhed733" path="res://assets/textures/cameraframe.svg" id="2_rdoft"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dlyx1hndocury" path="res://assets/textures/dev/grids/Dark/texture_02.png" id="4_shjb2"]
 [ext_resource type="PackedScene" path="res://scence/greekTemple.tscn" id="5_spu2r"]
 [ext_resource type="PackedScene" uid="uid://cmbm8q4vrhahu" path="res://scence/doubleDoor.tscn" id="6_j567o"]
+[ext_resource type="PackedScene" uid="uid://ba0nxk8sfhju1" path="res://scence/jetpack.tscn" id="8_rdoft"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q0xho"]
 render_priority = 0
@@ -89,3 +90,6 @@ targetScenePath = "uid://rfksfh242ud6"
 
 [node name="spawnPoint" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25259, 0)
+
+[node name="jetpack" parent="." instance=ExtResource("8_rdoft")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05937, 0.947067, 3.16528)
