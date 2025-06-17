@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dcqpwd45wtxli"]
+
+[node name="MainMenuScene" type="Node2D"]
+
+[node name="startButton" type="Button" parent="."]
+offset_left = 855.0
+offset_top = 592.0
+offset_right = 1105.0
+offset_bottom = 692.0
+text = "Start"
+
+[node name="optionsButton" type="Button" parent="."]
+offset_left = 857.0
+offset_top = 699.0
+offset_right = 1107.0
+offset_bottom = 799.0
+text = "Options
+"
+
+[node name="exitButton" type="Button" parent="."]
+offset_left = 858.0
+offset_top = 807.0
+offset_right = 1108.0
+offset_bottom = 907.0
+text = "Exit"
