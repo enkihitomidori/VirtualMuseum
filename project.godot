@@ -14,7 +14,6 @@ config/name="VirtuMus"
 config/version="00.1"
 run/main_scene="uid://mxrnxkw3d67l"
 config/features=PackedStringArray("4.4", "Forward Plus")
-boot_splash/show_image=false
 boot_splash/fullsize=false
 config/icon="res://icon.svg"
 

@@ -1,12 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://rfksfh242ud6"]
+[gd_scene load_steps=9 format=3 uid="uid://rfksfh242ud6"]
 
 [ext_resource type="PackedScene" uid="uid://dvpu183hl1gjr" path="res://assets/3DModels/greekTempleInside.glb" id="1_wc3es"]
 [ext_resource type="PackedScene" uid="uid://cmbm8q4vrhahu" path="res://scence/doubleDoor.tscn" id="2_cwiuu"]
+[ext_resource type="Texture2D" uid="uid://br3d3ghmmwhpv" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="3_2vels"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwiuu"]
+albedo_color = Color(0.68, 0.5542, 0.4284, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wc3es"]
 size = Vector3(17, 0.03, 55)
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qcvip"]
+panorama = ExtResource("3_2vels")
+
+[sub_resource type="Sky" id="Sky_f3sb7"]
+sky_material = SubResource("PanoramaSkyMaterial_qcvip")
+
+[sub_resource type="Environment" id="Environment_pq8xk"]
+background_mode = 2
+sky = SubResource("Sky_f3sb7")
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="greekTempleInside" instance=ExtResource("1_wc3es")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cwiuu")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
 
@@ -16,6 +35,18 @@ shape = SubResource("BoxShape3D_wc3es")
 [node name="spawnPoint" type="Node3D" parent="." index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.04679, 25.5715)
 
-[node name="Node3D" parent="." index="3" instance=ExtResource("2_cwiuu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203493, 1.015, 26.9677)
+[node name="Door" parent="." index="3" instance=ExtResource("2_cwiuu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203493, 1.015, 27.4471)
 targetScenePath = "uid://cm43gro6ra13j"
+
+[node name="env" type="Node3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0464887, 0, 0)
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" index="0"]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 4.85595, -1.93457)
+light_energy = 1.162
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env" index="1"]
+environment = SubResource("Environment_pq8xk")

@@ -12,6 +12,7 @@ extends CharacterBody3D
 @onready var raycastHead: RayCast3D = $head/Camera3D/RayCastHead
 @onready var raycastFeet: RayCast3D = $RayCastFeet
 @onready var gun: Node3D = $head/Camera3D/Gun
+@onready var gunmodel = $"../player/head/Camera3D/Gun/gunModel"
 @onready var cameraGUI = $"../player/Cameraframe" # prev: $"../stage/misc/Cameraframe"
 @onready var jetpackInfoLabel: Label = $"../player/jetpackInfo" # this is a placeholder for jetpack firstperson model
 
@@ -53,15 +54,18 @@ var shootInterval = 0.1
 func _ready() -> void:
 	
 	assert(cameraGUI, "cameraGUI null")
+	assert(gunmodel, "gunModel null")
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	 #Set camera FOV to harmonize with the constants, sanity check the GUI
 	#
-	cameraGUI.visible = false 
+	cameraGUI.visible = false
 
 	camera_3d.fov = CAMERA_NORMAL
 	jetpackInfoLabel.visible = false
+	gunmodel.visible = false
+	
 
 
 
@@ -99,15 +103,16 @@ func _input(event):
 		
 	# ::shoot
 	gunTimer -= get_process_delta_time() # this is delta
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if gunTimer <= 0.0:
-			gun.shoot()
-			gunTimer = shootInterval
+	if equippedItem and equippedItem.get_name() == "gun":
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			if gunTimer <= 0.0:
+				gun.shoot()
+				gunTimer = shootInterval
 
 
 func _physics_process(delta: float) -> void:
 	
-	# raycast head
+	# raycast head  ::interact
 	if Input.is_action_just_pressed("interact"):
 		if raycastHead.is_colliding():
 			var hit = raycastHead.get_collider()
@@ -131,10 +136,19 @@ func _physics_process(delta: float) -> void:
 				equippedItem = parent
 				#parent.queue_free()
 				jetpackInfoLabel.visible = true
+				gunmodel.visible = false
 				
-	if equippedItem and equippedItem.get_name() == "jetpack" and Input.is_key_pressed(KEY_R):
-		equippedItem = null
+			# ::gun interact
+			elif parent.get_name() == "gun":
+				equippedItem = parent
+				gunmodel.visible = true
+				jetpackInfoLabel.visible = false
+				
+	# ::unequip all
+	if equippedItem and Input.is_key_pressed(KEY_R):
 		jetpackInfoLabel.visible = false
+		gunmodel.visible = false
+		equippedItem = null
 	
 	if Input.is_action_pressed("sprint"):
 		currentSpeed = SPRINT_SPEED
@@ -148,7 +162,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("ui_accept"):
 			velocity.y = JETPACK_VELOCITY * JETPACK_ACCELERATION
 			JETPACK_ACCELERATION *= 1.01
-			print(JETPACK_ACCELERATION)
+			#print(JETPACK_ACCELERATION)
 		else:
 			JETPACK_ACCELERATION = 1.3
 	
