@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://cm43gro6ra13j"]
+[gd_scene load_steps=13 format=3 uid="uid://cm43gro6ra13j"]
 
 [ext_resource type="Shader" path="res://scence/world.gdshader" id="1_thelq"]
-[ext_resource type="Texture2D" uid="uid://cvi5t5xhed733" path="res://assets/textures/cameraframe.svg" id="2_rdoft"]
 [ext_resource type="Texture2D" uid="uid://cyw35lu830o74" path="res://assets/textures/dev/grids/Green/texture_09.png" id="3_7giy0"]
 [ext_resource type="Texture2D" uid="uid://dlyx1hndocury" path="res://assets/textures/dev/grids/Dark/texture_02.png" id="4_shjb2"]
 [ext_resource type="PackedScene" path="res://scence/greekTemple.tscn" id="5_spu2r"]
@@ -40,12 +39,6 @@ material_override = SubResource("ShaderMaterial_q0xho")
 operation = 2
 use_collision = true
 size = Vector3(4, 5.915, 2)
-
-[node name="Cameraframe" type="Sprite2D" parent="misc"]
-visible = false
-position = Vector2(987, 625)
-scale = Vector2(0.749479, 0.756481)
-texture = ExtResource("2_rdoft")
 
 [node name="floorbox" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.236525, -0.552933, -0.249606)

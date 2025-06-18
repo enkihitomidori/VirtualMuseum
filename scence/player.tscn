@@ -5,16 +5,42 @@
 [ext_resource type="Script" uid="uid://diwkb6rx865jq" path="res://scripts/gun.gd" id="3_e4r8n"]
 [ext_resource type="Texture2D" uid="uid://cvi5t5xhed733" path="res://assets/textures/cameraframe.svg" id="4_vh3rr"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_imags"]
+font_size = 46
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j6sff"]
 
 [sub_resource type="TextMesh" id="TextMesh_u4yjv"]
 text = "gun"
 
-[sub_resource type="LabelSettings" id="LabelSettings_imags"]
-font_size = 46
-
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_qav0y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Cameraframe" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vh3rr")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="jetpackInfo" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -367.5
+offset_right = 367.5
+offset_bottom = 64.0
+grow_horizontal = 2
+text = "jetpack active (press R to disable)"
+label_settings = SubResource("LabelSettings_imags")
 
 [node name="playerCollider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -48,17 +74,3 @@ target_position = Vector3(0, 0, -50)
 
 [node name="RayCastFeet" type="RayCast3D" parent="."]
 target_position = Vector3(0, -0.5, 0)
-
-[node name="Cameraframe" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(987, 625)
-scale = Vector2(0.749479, 0.756481)
-texture = ExtResource("4_vh3rr")
-
-[node name="jetpackInfo" type="Label" parent="."]
-offset_top = 7.0
-offset_right = 2000.0
-offset_bottom = 77.0
-text = "jetpack active (press R to disable)"
-label_settings = SubResource("LabelSettings_imags")
-horizontal_alignment = 1
