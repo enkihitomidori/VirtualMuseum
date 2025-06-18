@@ -53,6 +53,8 @@ var shootInterval = 0.1
 
 func _ready() -> void:
 	
+	print("Player.gd init")
+	
 	assert(cameraGUI, "cameraGUI null")
 	assert(gunmodel, "gunModel null")
 	

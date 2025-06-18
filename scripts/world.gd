@@ -10,14 +10,19 @@ func _ready() -> void:
 	print("world.gd init")
 	
 	# load default scene
-	if defaultScene:
-		loadLevel(defaultScene)
+	#if defaultScene:
+		#loadLevel(defaultScene)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
+func loadPlayer():
+	var playerScene = load("res://scence/player.tscn").instantiate()
+	add_child(playerScene)
+	player = playerScene
+	
 
 func loadLevel(packedScene: PackedScene):
 	# Clear previous scene
@@ -37,4 +42,5 @@ func loadLevel(packedScene: PackedScene):
 		spawnPointPos = spawnPointNode.global_position
 
 	# set player position
+	assert(player, "player null for some reason")
 	player.global_position = spawnPointPos
