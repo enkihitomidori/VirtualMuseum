@@ -17,13 +17,6 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/fullsize=false
 config/icon="res://icon.svg"
 
-[display]
-
-window/size/viewport_width=2000
-window/size/viewport_height=1300
-window/size/initial_position_type=0
-window/size/initial_position=Vector2i(0, -200)
-
 [input]
 
 sprint={

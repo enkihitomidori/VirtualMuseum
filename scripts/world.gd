@@ -8,6 +8,7 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("world.gd init")
+	scaleToMonitor()
 	
 	# load default scene
 	#if defaultScene:
@@ -17,6 +18,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func scaleToMonitor():
+	var resolution = DisplayServer.screen_get_size()
+	DisplayServer.window_set_size(Vector2i(resolution))
+	DisplayServer.window_set_position(Vector2i(0,0))
 
 func loadPlayer():
 	var playerScene = load("res://scence/player.tscn").instantiate()
