@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bdiotjuyultgn" path="res://assets/3DModels/greekTemple.glb" id="1_eurqx"]
 [ext_resource type="Material" uid="uid://crek4amp28ghp" path="res://assets/textures/templeFloor.tres" id="2_2h28c"]
 [ext_resource type="Material" uid="uid://b2rbixy7q5m7g" path="res://assets/textures/templePillar.tres" id="3_qtjpf"]
-[ext_resource type="Material" uid="uid://clxkrmdyu0jph" path="res://assets/textures/templeWall.tres" id="4_74wye"]
+[ext_resource type="Material" uid="uid://v7p1lb3phfdk" path="res://assets/textures/templeWall.tres" id="4_74wye"]
 
 [node name="greekTemple" instance=ExtResource("1_eurqx")]
 
