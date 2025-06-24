@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cubm2ew1safyy" path="res://scripts/world.gd" id="1_imags"]
 [ext_resource type="Texture2D" uid="uid://br3d3ghmmwhpv" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_3f0ma"]
 [ext_resource type="PackedScene" uid="uid://cm43gro6ra13j" path="res://scence/outside.tscn" id="2_a8ld7"]
-[ext_resource type="PackedScene" uid="uid://dcqpwd45wtxli" path="res://scence/mainMenuScene.tscn" id="8_lhauw"]
+[ext_resource type="PackedScene" uid="uid://bxq1hbkg8tcoe" path="res://scence/mainMenuScene.tscn" id="8_lhauw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_036b0"]
 panorama = ExtResource("2_3f0ma")

@@ -3,6 +3,7 @@ extends Control
 @onready var mainMenu: VBoxContainer = $"CenterContainer/mainMenu"
 @onready var settingsMenu: VBoxContainer = $"CenterContainer/settingsMenu"
 @onready var creditsMenu: VBoxContainer = $"CenterContainer/creditsMenu"
+@onready var playButton: Button = $"CenterContainer/mainMenu/playButton"
 
 @onready var volumeValueLabel: Label = $"CenterContainer/settingsMenu/volumeSlider/volumeValue"
 @onready var musicValueLabel: Label = $"CenterContainer/settingsMenu/musicSlider/musicValue"
@@ -41,6 +42,7 @@ func _ready():
 	menus = [mainMenu, settingsMenu, creditsMenu]
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	
 
 func _toggleMenu(menu: int):
 	if menu < 0 or menu >= menus.size():
@@ -49,15 +51,33 @@ func _toggleMenu(menu: int):
 	
 	for i in menus.size():
 		menus[i].visible = (i == menu)
+		
+func _toggleRoot():
+	self.visible = !self.visible
+	
+func _enableRoot():
+	self.visible = true
+	
+func _disableRoot():
+	self.visible = false
 
 func _on_play_button_pressed():
 	var world_node = get_tree().get_root().get_node("world")
 	
-	world_node.loadPlayer()
-	world_node.loadLevel(world_node.defaultScene)
-	
-	# remove ui node
-	queue_free()
+	# if world hasn't been loaded yet
+	if world_node.worldLoaded == false:
+		world_node.loadPlayer()
+		world_node.loadLevel(world_node.defaultScene)
+		if playButton: playButton.text = "Continue"
+
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		world_node.player.cameraRotation = true
+		world_node.player.enableMovement = true
+		world_node.mainMenuActive = true
+
+	# hide root node
+	self.visible = false
 	
 func _on_volumeSliderChanged(val):
 	#print("volume val = ", val)

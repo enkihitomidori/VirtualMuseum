@@ -20,6 +20,7 @@ var currentSpeed = 5.0
 var lookRotation = Vector2()
 var cameraRotation : bool = true
 var captureMouse : bool = true
+var enableMovement : bool = true
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
@@ -89,8 +90,8 @@ func _input(event):
 		rotation.y = lookRotation.x
 		head.rotation.x = lookRotation.y
 
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
+	#if event.is_action_pressed("ui_cancel"):
+		#get_tree().quit()
 		
 	# show mouse cursor and lock camera
 	if Input.is_key_pressed(KEY_G):
@@ -108,6 +109,7 @@ func _input(event):
 	if equippedItem and equippedItem.get_name() == "gun":
 		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 			if gunTimer <= 0.0:
+				#TODO: fix: gun audio plays even if game is "paused"
 				gun.shoot()
 				gunTimer = shootInterval
 
@@ -194,19 +196,19 @@ func _physics_process(delta: float) -> void:
 			cameraGUI.visible = true
 #endregion
 
+	if enableMovement:
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir := Input.get_vector("left", "right", "forward", "backward")
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * currentSpeed
+			velocity.z = direction.z * currentSpeed
+		else:
+			velocity.x = move_toward(velocity.x, 0, currentSpeed)
+			velocity.z = move_toward(velocity.z, 0, currentSpeed)
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("left", "right", "forward", "backward")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * currentSpeed
-		velocity.z = direction.z * currentSpeed
-	else:
-		velocity.x = move_toward(velocity.x, 0, currentSpeed)
-		velocity.z = move_toward(velocity.z, 0, currentSpeed)
-
-	move_and_slide()
+		move_and_slide()
 
 func play_footstep():
 	# TODO: fix: footsteps wont play sometimes. Might need to jump
