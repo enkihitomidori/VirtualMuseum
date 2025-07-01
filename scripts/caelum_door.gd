@@ -35,5 +35,5 @@ func toggle_door():
 			push_error("Failed to load scene at: %s" % targetScenePath)
 			return
 
-		var world = get_tree().get_root().get_node("caelumInside")
+		var world = get_tree().get_root().get_node("world")
 		world.loadLevel(packedScene)

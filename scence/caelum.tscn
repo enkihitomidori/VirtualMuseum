@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://5e0fpuqewwdt"]
+[gd_scene load_steps=7 format=3 uid="uid://5e0fpuqewwdt"]
 
 [ext_resource type="PackedScene" uid="uid://pqgar6y4qloh" path="res://assets/3DModels/Caelum.glb" id="1_j5274"]
 [ext_resource type="Material" uid="uid://cyobsw41bo7h5" path="res://assets/textures/caelumPrimary.tres" id="2_ah6qd"]
 [ext_resource type="Material" uid="uid://7hqdpim04nq6" path="res://assets/textures/caelumGlass.tres" id="3_rmc6t"]
 [ext_resource type="Material" uid="uid://b1t312eo3qn76" path="res://assets/textures/caelumGrey.tres" id="4_am52t"]
+[ext_resource type="PackedScene" uid="uid://cmbm8q4vrhahu" path="res://scence/doubleDoor.tscn" id="5_rmc6t"]
+[ext_resource type="Script" uid="uid://due0nf8emeib4" path="res://scripts/caelum_door.gd" id="6_am52t"]
 
 [node name="Caelum" instance=ExtResource("1_j5274")]
 
@@ -23,5 +25,7 @@ surface_material_override/2 = ExtResource("3_rmc6t")
 [node name="groundPlate" parent="." index="3"]
 surface_material_override/0 = ExtResource("4_am52t")
 
-[node name="caelumOutsideDoor" parent="." index="4"]
-surface_material_override/0 = ExtResource("2_ah6qd")
+[node name="Node3D" parent="." index="8" instance=ExtResource("5_rmc6t")]
+transform = Transform3D(-0.799178, 0, 0.0849606, 0, 1.175, 0, -0.0362498, 0, -1.87307, 0.0154959, 1.00788, -4.06849)
+rotation_edit_mode = 1
+script = ExtResource("6_am52t")
