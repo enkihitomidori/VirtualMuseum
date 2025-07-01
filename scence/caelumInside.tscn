@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://553g5odixojf"]
+
+[ext_resource type="PackedScene" uid="uid://ckte43s85gxa0" path="res://assets/3DModels/caelumInside.glb" id="1_vqp41"]
+[ext_resource type="Material" uid="uid://cyobsw41bo7h5" path="res://assets/textures/caelumPrimary.tres" id="2_v678a"]
+[ext_resource type="Material" uid="uid://7hqdpim04nq6" path="res://assets/textures/caelumGlass.tres" id="3_krauj"]
+[ext_resource type="Material" uid="uid://b1t312eo3qn76" path="res://assets/textures/caelumGrey.tres" id="4_ywicc"]
+
+[node name="caelumInside" instance=ExtResource("1_vqp41")]
+
+[node name="caelumInside" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_v678a")
+surface_material_override/1 = ExtResource("3_krauj")
+
+[node name="caelumInsideTrim" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_v678a")
+
+[node name="caelumInsideDoor" parent="." index="4"]
+surface_material_override/0 = ExtResource("4_ywicc")
