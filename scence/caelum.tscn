@@ -22,3 +22,6 @@ surface_material_override/2 = ExtResource("3_rmc6t")
 
 [node name="groundPlate" parent="." index="3"]
 surface_material_override/0 = ExtResource("4_am52t")
+
+[node name="caelumOutsideDoor" parent="." index="4"]
+surface_material_override/0 = ExtResource("2_ah6qd")
