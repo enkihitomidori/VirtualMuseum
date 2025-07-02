@@ -78,7 +78,7 @@ material = SubResource("StandardMaterial3D_lhauw")
 metadata/surfaceType = "dirt"
 
 [node name="greekTemple" parent="." instance=ExtResource("5_spu2r")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.14396, 0.22, -42.6187)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.14396, -0.0578457, -42.6187)
 
 [node name="doubledoor" parent="greekTemple" instance=ExtResource("6_j567o")]
 transform = Transform3D(-1.30165, 0, -8.74228e-08, 0, 1.62369, 0, 1.13794e-07, 0, -1, 0.00576067, 2.21552, -27.543)
@@ -94,4 +94,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05937, 0.947067, 3.16528)
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.75575, 1.03505, 3.28517)
 
 [node name="Caelum" parent="." instance=ExtResource("8_shjb2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.3115, 0.0770988, -2.49723)
+transform = Transform3D(-0.853951, 0, -0.520354, 0, 1, 0, 0.520354, 0, -0.853951, 42.5137, 0.0770988, 68.2559)

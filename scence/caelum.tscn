@@ -25,7 +25,8 @@ surface_material_override/2 = ExtResource("3_rmc6t")
 [node name="groundPlate" parent="." index="3"]
 surface_material_override/0 = ExtResource("4_am52t")
 
-[node name="Node3D" parent="." index="8" instance=ExtResource("5_rmc6t")]
-transform = Transform3D(-0.799178, 0, 0.0849606, 0, 1.175, 0, -0.0362498, 0, -1.87307, 0.0154959, 1.00788, -4.06849)
+[node name="doors" parent="." index="8" instance=ExtResource("5_rmc6t")]
+transform = Transform3D(-0.8, 0, 3.25032e-06, 0, 1.175, 0, -1.268e-06, 0, -1.875, 0.000518445, 1.21458, -4.00745)
 rotation_edit_mode = 1
 script = ExtResource("6_am52t")
+targetScenePath = "uid://553g5odixojf"

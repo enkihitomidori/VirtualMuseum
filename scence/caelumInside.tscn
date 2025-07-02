@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://553g5odixojf"]
+[gd_scene load_steps=6 format=3 uid="uid://553g5odixojf"]
 
 [ext_resource type="PackedScene" uid="uid://ckte43s85gxa0" path="res://assets/3DModels/caelumInside.glb" id="1_vqp41"]
 [ext_resource type="Material" uid="uid://cyobsw41bo7h5" path="res://assets/textures/caelumPrimary.tres" id="2_v678a"]
 [ext_resource type="Material" uid="uid://7hqdpim04nq6" path="res://assets/textures/caelumGlass.tres" id="3_krauj"]
 [ext_resource type="Material" uid="uid://b1t312eo3qn76" path="res://assets/textures/caelumGrey.tres" id="4_ywicc"]
+[ext_resource type="PackedScene" uid="uid://cmbm8q4vrhahu" path="res://scence/doubleDoor.tscn" id="5_krauj"]
 
 [node name="caelumInside" instance=ExtResource("1_vqp41")]
 
@@ -16,3 +17,10 @@ surface_material_override/0 = ExtResource("2_v678a")
 
 [node name="caelumInsideDoor" parent="." index="4"]
 surface_material_override/0 = ExtResource("4_ywicc")
+
+[node name="doors" parent="." index="5" instance=ExtResource("5_krauj")]
+transform = Transform3D(0.866217, 0, 0, 0, 1.15816, 0, 0, 0, 1, 0.0109699, 1.18576, -4.88318)
+targetScenePath = "uid://cm43gro6ra13j"
+
+[node name="spawnPoint" type="Node3D" parent="." index="6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17096, -2.85009)
