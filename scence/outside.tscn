@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://cm43gro6ra13j"]
+[gd_scene load_steps=14 format=3 uid="uid://cm43gro6ra13j"]
 
-[ext_resource type="Shader" path="res://scence/world.gdshader" id="1_thelq"]
-[ext_resource type="Texture2D" uid="uid://cvi5t5xhed733" path="res://assets/textures/cameraframe.svg" id="2_rdoft"]
+[ext_resource type="Shader" uid="uid://c8p8i8i67wlc5" path="res://scence/world.gdshader" id="1_thelq"]
 [ext_resource type="Texture2D" uid="uid://cyw35lu830o74" path="res://assets/textures/dev/grids/Green/texture_09.png" id="3_7giy0"]
 [ext_resource type="Texture2D" uid="uid://dlyx1hndocury" path="res://assets/textures/dev/grids/Dark/texture_02.png" id="4_shjb2"]
-[ext_resource type="PackedScene" path="res://scence/greekTemple.tscn" id="5_spu2r"]
+[ext_resource type="PackedScene" uid="uid://bdpmd8n1tb7nt" path="res://scence/greekTemple.tscn" id="5_spu2r"]
 [ext_resource type="PackedScene" uid="uid://cmbm8q4vrhahu" path="res://scence/doubleDoor.tscn" id="6_j567o"]
+[ext_resource type="PackedScene" uid="uid://dyjcuqo1ytq1n" path="res://scence/gun.tscn" id="8_7giy0"]
 [ext_resource type="PackedScene" uid="uid://ba0nxk8sfhju1" path="res://scence/jetpack.tscn" id="8_rdoft"]
+[ext_resource type="PackedScene" uid="uid://5e0fpuqewwdt" path="res://scence/caelum.tscn" id="8_shjb2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q0xho"]
 render_priority = 0
@@ -39,11 +40,6 @@ material_override = SubResource("ShaderMaterial_q0xho")
 operation = 2
 use_collision = true
 size = Vector3(4, 5.915, 2)
-
-[node name="Cameraframe" type="Sprite2D" parent="misc"]
-position = Vector2(987, 625)
-scale = Vector2(0.749479, 0.756481)
-texture = ExtResource("2_rdoft")
 
 [node name="floorbox" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.236525, -0.552933, -0.249606)
@@ -82,7 +78,7 @@ material = SubResource("StandardMaterial3D_lhauw")
 metadata/surfaceType = "dirt"
 
 [node name="greekTemple" parent="." instance=ExtResource("5_spu2r")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.14396, 0.22, -42.6187)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.14396, -0.0578457, -42.6187)
 
 [node name="doubledoor" parent="greekTemple" instance=ExtResource("6_j567o")]
 transform = Transform3D(-1.30165, 0, -8.74228e-08, 0, 1.62369, 0, 1.13794e-07, 0, -1, 0.00576067, 2.21552, -27.543)
@@ -93,3 +89,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25259, 0)
 
 [node name="jetpack" parent="." instance=ExtResource("8_rdoft")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05937, 0.947067, 3.16528)
+
+[node name="gun" parent="." instance=ExtResource("8_7giy0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.75575, 1.03505, 3.28517)
+
+[node name="Caelum" parent="." instance=ExtResource("8_shjb2")]
+transform = Transform3D(-0.853951, 0, -0.520354, 0, 1, 0, 0.520354, 0, -0.853951, 42.5137, 0.0770988, 68.2559)

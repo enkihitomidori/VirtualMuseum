@@ -1,0 +1,216 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxq1hbkg8tcoe"]
+
+[ext_resource type="Script" uid="uid://bpq7fee6x76j3" path="res://scripts/mainmenu.gd" id="1_fwe8p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fwe8p"]
+font_size = 125
+
+[sub_resource type="Theme" id="Theme_fwe8p"]
+Button/colors/font_color = Color(0.828826, 0.863453, 1, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fwe8p")
+
+[node name="Title" type="Label" parent="."]
+custom_minimum_size = Vector2(1920, 350)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 350.0
+text = "Virtual Museum/gallery"
+label_settings = SubResource("LabelSettings_fwe8p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(1080, 500)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -540.0
+offset_top = -140.0
+offset_right = 540.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fwe8p")
+
+[node name="mainMenu" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="playButton" type="Button" parent="CenterContainer/mainMenu"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 75
+text = "Play"
+
+[node name="settingsButton" type="Button" parent="CenterContainer/mainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 75
+text = "Settings"
+
+[node name="creditsButton" type="Button" parent="CenterContainer/mainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 75
+text = "Credits
+"
+
+[node name="quitButton" type="Button" parent="CenterContainer/mainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 75
+text = "Quit"
+
+[node name="settingsMenu" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="volumeSlider" type="HSlider" parent="CenterContainer/settingsMenu"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="volumeTitle" type="Label" parent="CenterContainer/settingsMenu/volumeSlider"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_top = -30.0
+offset_right = 500.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 50
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="volumeValue" type="Label" parent="CenterContainer/settingsMenu/volumeSlider"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_left = 100.0
+offset_right = 600.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="musicSlider" type="HSlider" parent="CenterContainer/settingsMenu"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="musicTitle" type="Label" parent="CenterContainer/settingsMenu/musicSlider"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_top = -30.0
+offset_right = 500.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 50
+text = "Music"
+horizontal_alignment = 1
+
+[node name="musicValue" type="Label" parent="CenterContainer/settingsMenu/musicSlider"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 0
+offset_left = 100.0
+offset_right = 600.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="fullscreenButton" type="Button" parent="CenterContainer/settingsMenu"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 50
+text = "Toggle Fullscreen"
+
+[node name="customResTitle" type="Label" parent="CenterContainer/settingsMenu"]
+layout_mode = 2
+text = "Custom resolution"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/settingsMenu"]
+layout_mode = 2
+
+[node name="customResX" type="LineEdit" parent="CenterContainer/settingsMenu/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+placeholder_text = "X"
+max_length = 4
+context_menu_enabled = false
+emoji_menu_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="customResY" type="LineEdit" parent="CenterContainer/settingsMenu/HBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+placeholder_text = "Y"
+max_length = 4
+context_menu_enabled = false
+emoji_menu_enabled = false
+middle_mouse_paste_enabled = false
+
+[node name="customResEnter" type="Button" parent="CenterContainer/settingsMenu/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Enter"
+
+[node name="backButton" type="Button" parent="CenterContainer/settingsMenu"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 75
+text = "Back"
+
+[node name="creditsMenu" type="VBoxContainer" parent="CenterContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="credits" type="Label" parent="CenterContainer/creditsMenu"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "dev 1
+dev 2
+dev 3
+..."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="backButton" type="Button" parent="CenterContainer/creditsMenu"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 75
+text = "Back"
+
+[connection signal="pressed" from="CenterContainer/mainMenu/playButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="CenterContainer/mainMenu/settingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="CenterContainer/mainMenu/creditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="CenterContainer/mainMenu/quitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="CenterContainer/settingsMenu/volumeSlider" to="." method="_on_volumeSliderChanged"]
+[connection signal="value_changed" from="CenterContainer/settingsMenu/musicSlider" to="." method="_on_musicSliderChanged"]
+[connection signal="pressed" from="CenterContainer/settingsMenu/fullscreenButton" to="." method="toggleFullscreen"]
+[connection signal="pressed" from="CenterContainer/settingsMenu/HBoxContainer/customResEnter" to="." method="_on_customResolutionPressed"]
+[connection signal="pressed" from="CenterContainer/settingsMenu/backButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="CenterContainer/creditsMenu/backButton" to="." method="_on_back_button_pressed"]

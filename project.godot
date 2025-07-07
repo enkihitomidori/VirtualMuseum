@@ -14,16 +14,14 @@ config/name="VirtuMus"
 config/version="00.1"
 run/main_scene="uid://mxrnxkw3d67l"
 config/features=PackedStringArray("4.4", "Forward Plus")
-boot_splash/show_image=false
 boot_splash/fullsize=false
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=2000
-window/size/viewport_height=1300
-window/size/initial_position_type=0
-window/size/initial_position=Vector2i(0, -200)
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
 
 [input]
 

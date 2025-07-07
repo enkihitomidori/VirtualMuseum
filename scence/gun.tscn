@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyjcuqo1ytq1n"]
+
+[sub_resource type="TextMesh" id="TextMesh_jkdg5"]
+text = "gun"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1gtcu"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="gun" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("TextMesh_jkdg5")
+
+[node name="Label3D" type="Label3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.294345, 0)
+billboard = 1
+text = "gun model here"
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_1gtcu")

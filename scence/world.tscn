@@ -1,33 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://mxrnxkw3d67l"]
+[gd_scene load_steps=8 format=3 uid="uid://mxrnxkw3d67l"]
 
-[ext_resource type="Script" uid="uid://b7s1cvb33ytql" path="res://scripts/player.gd" id="1_3f0ma"]
 [ext_resource type="Script" uid="uid://cubm2ew1safyy" path="res://scripts/world.gd" id="1_imags"]
 [ext_resource type="Texture2D" uid="uid://br3d3ghmmwhpv" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_3f0ma"]
-[ext_resource type="Script" uid="uid://dr41gukn02fs5" path="res://scence/camera_3d.gd" id="2_6psia"]
 [ext_resource type="PackedScene" uid="uid://cm43gro6ra13j" path="res://scence/outside.tscn" id="2_a8ld7"]
-[ext_resource type="Script" uid="uid://diwkb6rx865jq" path="res://scripts/gun.gd" id="3_lhauw"]
-[ext_resource type="Texture2D" uid="uid://cvi5t5xhed733" path="res://assets/textures/cameraframe.svg" id="5_ii6s1"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j6sff"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ii6s1"]
-albedo_color = Color(0.25, 0.25, 0.25, 1)
-metallic = 1.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_u4yjv"]
-material = SubResource("StandardMaterial3D_ii6s1")
-size = Vector3(0.1, 0.39, 0.1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q0xho"]
-albedo_color = Color(0.25098, 0.25098, 0.25098, 1)
-metallic = 1.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_lhauw"]
-material = SubResource("StandardMaterial3D_q0xho")
-size = Vector3(0.1, 0.1, 0.33)
-
-[sub_resource type="LabelSettings" id="LabelSettings_imags"]
-font_size = 46
+[ext_resource type="PackedScene" uid="uid://bxq1hbkg8tcoe" path="res://scence/mainMenuScene.tscn" id="8_lhauw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_036b0"]
 panorama = ExtResource("2_3f0ma")
@@ -45,59 +21,7 @@ glow_enabled = true
 script = ExtResource("1_imags")
 defaultScene = ExtResource("2_a8ld7")
 
-[node name="player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38811, 0)
-script = ExtResource("1_3f0ma")
-
-[node name="playerCollider" type="CollisionShape3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_j6sff")
-debug_color = Color(0, 0.6, 0.701961, 1)
-
-[node name="head" type="Node3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
-
-[node name="Camera3D" type="Camera3D" parent="player/head"]
-fov = 68.2
-script = ExtResource("2_6psia")
-
-[node name="RayCastHead" type="RayCast3D" parent="player/head/Camera3D"]
-target_position = Vector3(0, 0, -3)
-collide_with_areas = true
-
-[node name="Gun" type="Node3D" parent="player/head/Camera3D"]
-script = ExtResource("3_lhauw")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="player/head/Camera3D/Gun"]
-transform = Transform3D(1, 0, 0, 0, 0.985765, 0.168128, 0, -0.168128, 0.985765, 0.34, -0.295001, -0.396202)
-mesh = SubResource("BoxMesh_u4yjv")
-
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="player/head/Camera3D/Gun"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, -0.151554, -0.557187)
-mesh = SubResource("BoxMesh_lhauw")
-
-[node name="impactRay" type="RayCast3D" parent="player/head/Camera3D/Gun"]
-target_position = Vector3(0, 0, -50)
-
-[node name="gunPlayer" type="AudioStreamPlayer3D" parent="player/head/Camera3D/Gun"]
-
-[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="player"]
-
-[node name="RayCastFeet" type="RayCast3D" parent="player"]
-target_position = Vector3(0, -0.5, 0)
-
-[node name="Cameraframe" type="Sprite2D" parent="player"]
-position = Vector2(987, 625)
-scale = Vector2(0.749479, 0.756481)
-texture = ExtResource("5_ii6s1")
-
-[node name="jetpackInfo" type="Label" parent="player"]
-offset_top = 7.0
-offset_right = 2000.0
-offset_bottom = 77.0
-text = "jetpack active (press R to disable)"
-label_settings = SubResource("LabelSettings_imags")
-horizontal_alignment = 1
+[node name="MainMenuScene" parent="." instance=ExtResource("8_lhauw")]
 
 [node name="stage" type="Node3D" parent="."]
 physics_interpolation_mode = 1

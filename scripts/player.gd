@@ -12,13 +12,15 @@ extends CharacterBody3D
 @onready var raycastHead: RayCast3D = $head/Camera3D/RayCastHead
 @onready var raycastFeet: RayCast3D = $RayCastFeet
 @onready var gun: Node3D = $head/Camera3D/Gun
-@onready var cameraGUI = $"../player/Cameraframe" # prev: $"../stage/misc/Cameraframe"
-@onready var jetpackInfoLabel: Label = $"../player/jetpackInfo" # this is a placeholder for jetpack firstperson model
+@onready var gunmodel = $"../player/head/Camera3D/Gun/gunModel"
+@onready var cameraGUI = $"../player/CanvasLayer/Cameraframe" # prev: $"../stage/misc/Cameraframe"
+@onready var jetpackInfoLabel: Label = $"../player/CanvasLayer/jetpackInfo" # this is a placeholder for jetpack firstperson model
 
 var currentSpeed = 5.0
 var lookRotation = Vector2()
 var cameraRotation : bool = true
 var captureMouse : bool = true
+var enableMovement : bool = true
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
@@ -52,16 +54,21 @@ var shootInterval = 0.1
 
 func _ready() -> void:
 	
+	print("Player.gd init")
+	
 	assert(cameraGUI, "cameraGUI null")
+	assert(gunmodel, "gunModel null")
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	 #Set camera FOV to harmonize with the constants, sanity check the GUI
 	#
-	cameraGUI.visible = false 
+	cameraGUI.visible = false
 
 	camera_3d.fov = CAMERA_NORMAL
 	jetpackInfoLabel.visible = false
+	gunmodel.visible = false
+	
 
 
 
@@ -83,8 +90,8 @@ func _input(event):
 		rotation.y = lookRotation.x
 		head.rotation.x = lookRotation.y
 
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
+	#if event.is_action_pressed("ui_cancel"):
+		#get_tree().quit()
 		
 	# show mouse cursor and lock camera
 	if Input.is_key_pressed(KEY_G):
@@ -99,15 +106,17 @@ func _input(event):
 		
 	# ::shoot
 	gunTimer -= get_process_delta_time() # this is delta
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		if gunTimer <= 0.0:
-			gun.shoot()
-			gunTimer = shootInterval
+	if equippedItem and equippedItem.get_name() == "gun":
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+			if gunTimer <= 0.0:
+				#TODO: fix: gun audio plays even if game is "paused"
+				gun.shoot()
+				gunTimer = shootInterval
 
 
 func _physics_process(delta: float) -> void:
 	
-	# raycast head
+	# raycast head  ::interact
 	if Input.is_action_just_pressed("interact"):
 		if raycastHead.is_colliding():
 			var hit = raycastHead.get_collider()
@@ -131,10 +140,19 @@ func _physics_process(delta: float) -> void:
 				equippedItem = parent
 				#parent.queue_free()
 				jetpackInfoLabel.visible = true
+				gunmodel.visible = false
 				
-	if equippedItem and equippedItem.get_name() == "jetpack" and Input.is_key_pressed(KEY_R):
-		equippedItem = null
+			# ::gun interact
+			elif parent.get_name() == "gun":
+				equippedItem = parent
+				gunmodel.visible = true
+				jetpackInfoLabel.visible = false
+				
+	# ::unequip all
+	if equippedItem and Input.is_key_pressed(KEY_R):
 		jetpackInfoLabel.visible = false
+		gunmodel.visible = false
+		equippedItem = null
 	
 	if Input.is_action_pressed("sprint"):
 		currentSpeed = SPRINT_SPEED
@@ -148,7 +166,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("ui_accept"):
 			velocity.y = JETPACK_VELOCITY * JETPACK_ACCELERATION
 			JETPACK_ACCELERATION *= 1.01
-			print(JETPACK_ACCELERATION)
+			#print(JETPACK_ACCELERATION)
 		else:
 			JETPACK_ACCELERATION = 1.3
 	
@@ -178,19 +196,19 @@ func _physics_process(delta: float) -> void:
 			cameraGUI.visible = true
 #endregion
 
+	if enableMovement:
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir := Input.get_vector("left", "right", "forward", "backward")
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * currentSpeed
+			velocity.z = direction.z * currentSpeed
+		else:
+			velocity.x = move_toward(velocity.x, 0, currentSpeed)
+			velocity.z = move_toward(velocity.z, 0, currentSpeed)
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("left", "right", "forward", "backward")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * currentSpeed
-		velocity.z = direction.z * currentSpeed
-	else:
-		velocity.x = move_toward(velocity.x, 0, currentSpeed)
-		velocity.z = move_toward(velocity.z, 0, currentSpeed)
-
-	move_and_slide()
+		move_and_slide()
 
 func play_footstep():
 	# TODO: fix: footsteps wont play sometimes. Might need to jump
