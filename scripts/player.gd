@@ -69,6 +69,8 @@ func _ready() -> void:
 	jetpackInfoLabel.visible = false
 	gunmodel.visible = false
 	
+	
+	
 
 
 
