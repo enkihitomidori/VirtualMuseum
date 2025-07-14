@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://hkdvrflbadlj"]
+
+[ext_resource type="Script" uid="uid://5tdrt3uwscj0" path="res://scripts/art_object_2.gd" id="1_uonu1"]
+[ext_resource type="Texture2D" uid="uid://be1y0aptlig8p" path="res://assets/textures/dev/missing_texture.png" id="2_41e4s"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_uonu1")
+
+[node name="Painting" type="Sprite3D" parent="."]
+transform = Transform3D(0.237782, 0, 0, 0, 0.237782, 0, 0, 0, 0.996279, 0, 0, 0)
+texture = ExtResource("2_41e4s")
+
+[node name="Model" type="Node3D" parent="."]
