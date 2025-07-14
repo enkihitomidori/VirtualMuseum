@@ -1,10 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://553g5odixojf"]
+[gd_scene load_steps=10 format=3 uid="uid://553g5odixojf"]
 
 [ext_resource type="PackedScene" uid="uid://ckte43s85gxa0" path="res://assets/3DModels/caelumInside.glb" id="1_vqp41"]
 [ext_resource type="Material" uid="uid://cyobsw41bo7h5" path="res://assets/textures/caelumPrimary.tres" id="2_v678a"]
 [ext_resource type="Material" uid="uid://7hqdpim04nq6" path="res://assets/textures/caelumGlass.tres" id="3_krauj"]
 [ext_resource type="Material" uid="uid://b1t312eo3qn76" path="res://assets/textures/caelumGrey.tres" id="4_ywicc"]
 [ext_resource type="PackedScene" uid="uid://cmbm8q4vrhahu" path="res://scence/doubleDoor.tscn" id="5_krauj"]
+[ext_resource type="Texture2D" uid="uid://cg612ety31uuv" path="res://cubemap/panorama_image.png" id="6_ywicc"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_e5sie"]
+panorama = ExtResource("6_ywicc")
+
+[sub_resource type="Sky" id="Sky_path0"]
+sky_material = SubResource("PanoramaSkyMaterial_e5sie")
+
+[sub_resource type="Environment" id="Environment_ngt8q"]
+background_mode = 2
+sky = SubResource("Sky_path0")
 
 [node name="caelumInside" instance=ExtResource("1_vqp41")]
 
@@ -24,3 +35,6 @@ targetScenePath = "uid://cm43gro6ra13j"
 
 [node name="spawnPoint" type="Node3D" parent="." index="6"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.17096, -2.85009)
+
+[node name="cubemapTest" type="WorldEnvironment" parent="." index="7"]
+environment = SubResource("Environment_ngt8q")

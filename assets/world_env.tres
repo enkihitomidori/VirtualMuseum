@@ -1,0 +1,15 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://bmjsthj6pqhul"]
+
+[ext_resource type="Texture2D" uid="uid://br3d3ghmmwhpv" path="res://assets/hdris/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="1_l5pk5"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_036b0"]
+panorama = ExtResource("1_l5pk5")
+
+[sub_resource type="Sky" id="Sky_j6sff"]
+sky_material = SubResource("PanoramaSkyMaterial_036b0")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_j6sff")
+tonemap_mode = 2
+glow_enabled = true
