@@ -13,9 +13,9 @@ func toggle_door():
 	
 	# play door animation ("door_close" is currently not used)
 	if isOpen:
-		animPlayer.play("door_close")
+		animPlayer.play("caelumDoorClose")
 	else:
-		animPlayer.play("door_open")
+		animPlayer.play("caelumDoorOpen")
 		
 	# toggle door state (currently useless)
 	isOpen = !isOpen
