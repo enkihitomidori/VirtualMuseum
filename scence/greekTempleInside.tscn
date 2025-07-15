@@ -26,10 +26,6 @@ glow_enabled = true
 
 [node name="ART" type="Node3D" parent="." index="0"]
 
-[node name="ArtObject example" parent="ART" index="0" instance=ExtResource("2_j3ugf")]
-transform = Transform3D(-2.00335e-08, 0, 0.458314, 0, 0.458314, 0, -0.458314, 0, -2.00335e-08, 6.00205, 3.64333, -16.578)
-targetPainting = "uid://vesif483mujw"
-
 [node name="templeInsideMesh" parent="." index="1"]
 surface_material_override/0 = ExtResource("2_na2pg")
 
@@ -81,3 +77,11 @@ surface_material_override/0 = ExtResource("7_hp5xt")
 
 [node name="templeFloorInside1" parent="." index="14"]
 surface_material_override/0 = ExtResource("7_j3ugf")
+
+[node name="Node3D" parent="." index="75" instance=ExtResource("2_j3ugf")]
+transform = Transform3D(-1.75664e-08, 0, -0.401872, 0, 0.401872, 0, 0.401872, 0, -1.75664e-08, 6.36931, 3.47652, -16.54)
+Artwork = "uid://dvm4hu4ldqdx1"
+EnableFrame = true
+FrameDepth = 0.42
+FrameWidth = 1.39
+FrameColor = Color(0.0723144, 0.065643, 0.065643, 1)

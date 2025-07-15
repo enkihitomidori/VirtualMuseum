@@ -12,3 +12,8 @@ Documentation
     - add new metadata to a surface:
         - name: "surfaceType" value: string
     - valuestring same as the name of the audio eg: "name"
+
+# artObject 2.0:
+    - drag "artObject2.tscn" to the scene
+    - select artwork from inpector panel
+    - enable and customize frame (optional)

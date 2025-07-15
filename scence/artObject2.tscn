@@ -11,3 +11,5 @@ transform = Transform3D(0.237782, 0, 0, 0, 0.237782, 0, 0, 0, 0.996279, 0, 0, 0)
 texture = ExtResource("2_41e4s")
 
 [node name="Model" type="Node3D" parent="."]
+
+[node name="Frame" type="Node3D" parent="."]
