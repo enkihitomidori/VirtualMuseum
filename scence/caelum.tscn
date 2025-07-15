@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://5e0fpuqewwdt"]
+[gd_scene load_steps=7 format=3 uid="uid://5e0fpuqewwdt"]
 
 [ext_resource type="PackedScene" uid="uid://pqgar6y4qloh" path="res://assets/3DModels/Caelum.glb" id="1_j5274"]
 [ext_resource type="Material" uid="uid://cyobsw41bo7h5" path="res://assets/textures/caelumPrimary.tres" id="2_ah6qd"]
+[ext_resource type="Material" uid="uid://ciovkx48018q2" path="res://assets/textures/caelumWindowOut.tres" id="3_am52t"]
 [ext_resource type="Material" uid="uid://7hqdpim04nq6" path="res://assets/textures/caelumGlass.tres" id="3_rmc6t"]
 [ext_resource type="Material" uid="uid://b1t312eo3qn76" path="res://assets/textures/caelumGrey.tres" id="4_am52t"]
 [ext_resource type="PackedScene" uid="uid://05qw73vkswb4" path="res://scence/caelumDoor.tscn" id="7_am52t"]
@@ -10,7 +11,7 @@
 
 [node name="buildingMain" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_ah6qd")
-surface_material_override/1 = ExtResource("3_rmc6t")
+surface_material_override/1 = ExtResource("3_am52t")
 surface_material_override/2 = ExtResource("4_am52t")
 
 [node name="trimPiece" parent="." index="1"]
