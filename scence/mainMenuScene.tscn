@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxq1hbkg8tcoe"]
+[gd_scene load_steps=5 format=3 uid="uid://bxq1hbkg8tcoe"]
 
 [ext_resource type="Script" uid="uid://bpq7fee6x76j3" path="res://scripts/mainmenu.gd" id="1_fwe8p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fwe8p"]
 font_size = 125
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwe8p"]
+bg_color = Color(0.292946, 0.292946, 0.292946, 1)
+
 [sub_resource type="Theme" id="Theme_fwe8p"]
 Button/colors/font_color = Color(0.828826, 0.863453, 1, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_fwe8p")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -16,6 +20,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fwe8p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.407843)
 
 [node name="Title" type="Label" parent="."]
 custom_minimum_size = Vector2(1920, 350)
