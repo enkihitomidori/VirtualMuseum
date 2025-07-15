@@ -19,3 +19,4 @@ mono_crash.*.json
 
 # mac bs
 .DS_store
+*.import
