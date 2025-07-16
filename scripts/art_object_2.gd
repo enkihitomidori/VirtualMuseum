@@ -3,6 +3,13 @@
 @tool
 extends Node3D
 
+# shading not working
+
+
+
+
+
+
 #@export_file("*.glb") var targetModel: String:
 	#set(value):
 		#targetModel = value
@@ -12,6 +19,11 @@ extends Node3D
 	set(value):
 		Artwork = value
 		_update_texture()
+
+@export var shaded: bool = false:
+	set(value):
+		shaded = value
+		_updateSettings()
 
 @export var EnableFrame: bool = false:
 	set(value):
@@ -49,6 +61,11 @@ func _ready() -> void:
 	#_update_model()
 	if EnableFrame:
 		generate_frame()
+	
+	Painting.shaded = shaded
+
+func _updateSettings():
+	if Painting: Painting.shaded = shaded
 
 func _update_texture() -> void:
 	if !Painting or !Artwork:
@@ -57,10 +74,13 @@ func _update_texture() -> void:
 	var text = load(Artwork)
 	if text:
 		Painting.texture = text
+		Painting.alpha_cut = SpriteBase3D.ALPHA_CUT_DISCARD
+		Painting.shaded = shaded
 		await get_tree().process_frame # wait for texture
 		
 		if Frame and EnableFrame:
 			generate_frame()
+	
 
 func clearFrame():
 	if !Frame:

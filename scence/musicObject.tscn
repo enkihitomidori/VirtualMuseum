@@ -4,7 +4,6 @@
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_m41cp")
-volume = 0.5
 
 [node name="DebugName" type="Label3D" parent="."]
 billboard = 1
