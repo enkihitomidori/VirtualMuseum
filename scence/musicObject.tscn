@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgmwdasgrt7q8"]
+
+[ext_resource type="Script" uid="uid://ccreqgfwlkhmy" path="res://scripts/musicObject.gd" id="1_m41cp"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_m41cp")
+volume = 0.5
+
+[node name="DebugName" type="Label3D" parent="."]
+billboard = 1
+text = "MusicObject"
+
+[node name="musicPlayer" type="AudioStreamPlayer3D" parent="."]
+bus = &"MUSIC"
+
+[node name="audioRadius" type="Node3D" parent="."]
