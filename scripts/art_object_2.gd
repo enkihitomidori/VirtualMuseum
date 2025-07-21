@@ -52,6 +52,19 @@ extends Node3D
 		FrameColor = value
 		generate_frame()
 
+@export var FrameTextureEnable: bool = false:
+	set(value):
+		FrameTextureEnable = value
+		generate_frame()
+
+@export_file("*.jpg", "*.png") var FrameTexture: String:
+	set(value):
+		if value:
+			FrameTexture = value
+			if FrameTextureEnable:
+				generate_frame()
+
+
 @onready var Painting: Sprite3D = $Painting
 @onready var Model: Node3D = $Model
 @onready var Frame: Node3D = $Frame
@@ -92,6 +105,8 @@ func clearFrame():
 		
 	return
 
+func round_to_2_decimals(value: float) -> float:
+	return round(value * 100.0) / 100.0
 
 func generate_frame():
 	if !Painting or !Painting.texture:
@@ -134,10 +149,28 @@ func generate_frame():
 		var box = BoxMesh.new()
 		box.size = def["size"]
 		
-		# set color
 		var material = StandardMaterial3D.new()
+		
+		if FrameTextureEnable:
+			if FrameTexture:
+				var tex = load(FrameTexture)
+				assert(tex, "Failed to load texture for some reason")
+				
+				# if frame is left or right, rotate texture 90degrees
+				# NOTE: this dont work
+				if round_to_2_decimals(box.size.x) == FrameWidth:
+					var image = tex.get_image()
+					image.rotate_90(CLOCKWISE)
+					tex = ImageTexture.create_from_image(image)
+					
+				material.albedo_texture = tex
+			else:
+				push_error("No frametexture selected")
+
+		# set color
 		if !FrameColor: FrameColor = Color.WHITE
 		material.albedo_color = FrameColor
+
 		box.material = material
 		
 		mesh_instance.mesh = box
